@@ -11,9 +11,7 @@
 //   desc     → short description
 //   url      → link to open
 //   category → 'apps' | 'websites' | 'webs-wb'
-//   icon     → optional: a Font Awesome class ("fas fa-rocket")
-//              OR an image URL ("https://.../logo.png")
-//              If omitted, first letter of name is used.
+//   icon     → optional: an image URL or Font Awesome class
 //   featured → optional: true to highlight
 //   download → optional: URL to APK / download page
 // ============================================================
@@ -29,8 +27,37 @@ const APPS = [
         icon: "https://i.ibb.co/nJ0Wnqs/relay.jpg",
         featured: true
     },
+    {
+        name: "Blitzracer",
+        desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
+        url: "https://blitzracer.vercel.app",
+        category: "apps",
+        icon: "fas fa-car-side"
+    },
+    {
+        name: "ZeeAI TTS",
+        desc: "Text-to-speech powered by AI. Type anything and hear it spoken in natural voices — installable as a PWA.",
+        url: "https://projectsofkhan.github.io/zeeAi",
+        category: "apps",
+        icon: "fas fa-microphone-lines"
+    },
+    {
+        name: "3 Player Carrom",
+        desc: "Classic carrom board game for three players. Play with friends online, right from your browser.",
+        url: "https://carrom3p.vercel.app",
+        category: "apps",
+        icon: "fas fa-circle-dot"
+    },
 
     // ── Websites ──
+    {
+        name: "Zeeshan 40u Portfolio",
+        desc: "Personal portfolio showcasing projects, skills, and contact — the home base for everything I build.",
+        url: "https://zeeshan40u.vercel.app",
+        category: "websites",
+        icon: "https://zeeshan40u.vercel.app/favicon.ico",
+        featured: true
+    },
 
     // ── Websites built with builders (WB) ──
 
@@ -150,6 +177,9 @@ function renderGrid(items, animate) {
 
     grid.innerHTML = items.map(buildCard).join("");
 
+    // Re-attach 3D listeners to new cards
+    attach3DTilt();
+
     if (animate) {
         grid.classList.remove("entering");
         void grid.offsetWidth;
@@ -161,6 +191,68 @@ function renderGrid(items, animate) {
 function filterByTab(tab) {
     if (tab === "all") return APPS;
     return APPS.filter((item) => item.category === tab);
+}
+
+// ============================================================
+// 3D TILT — the core "dimensional" behavior
+// ============================================================
+const TILT_MAX_X = 6;   // degrees
+const TILT_MAX_Y = 8;   // degrees
+const TILT_LIFT = -6;   // px lifted on hover
+const TILT_Z = 20;      // px pushed forward in 3D
+
+function attach3DTilt() {
+    const cards = document.querySelectorAll(".app-card");
+
+    // Skip on touch / small screens — CSS handles mobile hover
+    const isTouch = window.matchMedia("(hover: none)").matches;
+    const isNarrow = window.matchMedia("(max-width: 768px)").matches;
+    if (isTouch || isNarrow) return;
+
+    cards.forEach((card) => {
+        if (card.dataset.tiltBound === "1") return;
+        card.dataset.tiltBound = "1";
+
+        let raf = null;
+
+        const onMove = (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;   // 0 → 1
+            const y = (e.clientY - rect.top) / rect.height;   // 0 → 1
+
+            // Update cursor-follow glow
+            card.style.setProperty("--mouse-x", `${x * 100}%`);
+            card.style.setProperty("--mouse-y", `${y * 100}%`);
+
+            // Calculate tilt from center (0.5, 0.5)
+            const ry = (x - 0.5) * 2 * TILT_MAX_Y;   // left/right
+            const rx = (0.5 - y) * 2 * TILT_MAX_X;   // up/down
+
+            if (raf) cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                card.style.setProperty("--rx", `${rx}deg`);
+                card.style.setProperty("--ry", `${ry}deg`);
+                card.style.setProperty("--ty", `${TILT_LIFT}px`);
+                card.style.setProperty("--tz", `${TILT_Z}px`);
+            });
+        };
+
+        const onEnter = () => {
+            card.classList.add("tilt-active");
+        };
+
+        const onLeave = () => {
+            card.classList.remove("tilt-active");
+            card.style.setProperty("--rx", "0deg");
+            card.style.setProperty("--ry", "0deg");
+            card.style.setProperty("--ty", "0");
+            card.style.setProperty("--tz", "0");
+        };
+
+        card.addEventListener("mousemove", onMove);
+        card.addEventListener("mouseenter", onEnter);
+        card.addEventListener("mouseleave", onLeave);
+    });
 }
 
 // ============================================================
