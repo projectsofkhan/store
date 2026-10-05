@@ -4,29 +4,28 @@
 /* ============================================================ */
 
 // ============================================================
-// DATA — Add your apps, PWAs, websites here
+// DATA
 // ============================================================
 // Each item needs:
 //   name     → display name
 //   desc     → short description
-//   url      → link (opens in same tab by default)
+//   url      → link to open
 //   category → 'apps' | 'websites' | 'webs-wb'
-//   icon     → optional Font Awesome class OR image URL
-//              - If you pass an image URL, it will be used as <img>
-//              - If you pass a FA class like "fas fa-rocket", it will be used as icon
-//              - If you pass nothing, the first letter of the name is shown
-//   featured → optional; true to highlight with a gold border
-//
-// Example:
-//   { name: "RelayTalk", desc: "...", url: "https://...", category: "apps", icon: "fas fa-comments", featured: true }
+//   icon     → optional: a Font Awesome class ("fas fa-rocket")
+//              OR an image URL ("https://.../logo.png")
+//              If omitted, first letter of name is used.
+//   featured → optional: true to highlight with gold border
+//   download → optional: URL to APK / download page
+//              (only shown if present — perfect for RelayTalk)
 // ============================================================
 
 const APPS = [
     // ── Apps & PWAs ──
     {
         name: "RelayTalk",
-        desc: "Fast, private messaging & calls — no ads, no noise. Chat, share images and voice notes, make calls, all in one place.",
+        desc: "Fast, private messaging & calls. Chat, share images and voice notes, make calls — no ads, no noise, no tracking.",
         url: "https://relaytalk.vercel.app",
+        download: "/assets/apk/",
         category: "apps",
         icon: "fas fa-comments",
         featured: true
@@ -34,7 +33,7 @@ const APPS = [
 
     // ── Websites ──
 
-    // ── Websites built with builders ──
+    // ── Websites built with builders (WB) ──
 
     // ── Add more above this line ──
 ];
@@ -43,24 +42,6 @@ const APPS = [
 // STATE
 // ============================================================
 let currentTab = "all";
-
-// ============================================================
-// ICON RENDERING
-// ============================================================
-function renderIcon(icon, name) {
-    if (!icon) {
-        const initial = (name || "?").trim().charAt(0).toUpperCase();
-        return `<span class="app-icon-initial">${escapeHtml(initial)}</span>`;
-    }
-
-    // If it looks like a URL → render as image
-    if (/^https?:\/\//i.test(icon) || icon.startsWith("/") || icon.startsWith("data:")) {
-        return `<img src="${escapeAttr(icon)}" alt="${escapeAttr(name)}" loading="lazy" onerror="this.style.display='none'">`;
-    }
-
-    // Otherwise assume it's a Font Awesome class (e.g. "fas fa-rocket")
-    return `<i class="${escapeAttr(icon)}"></i>`;
-}
 
 // ============================================================
 // HELPERS
@@ -77,15 +58,6 @@ function escapeHtml(str) {
 
 function escapeAttr(str) { return escapeHtml(str); }
 
-function getDomain(url) {
-    try {
-        const u = new URL(url);
-        return u.hostname.replace(/^www\./, "");
-    } catch {
-        return url.replace(/^https?:\/\//, "").split("/")[0];
-    }
-}
-
 function getBadgeFor(category) {
     switch (category) {
         case "apps":
@@ -99,16 +71,33 @@ function getBadgeFor(category) {
     }
 }
 
+function renderIcon(icon, name) {
+    if (!icon) {
+        const initial = (name || "?").trim().charAt(0).toUpperCase();
+        return `<span class="app-icon-initial">${escapeHtml(initial)}</span>`;
+    }
+    if (/^https?:\/\//i.test(icon) || icon.startsWith("/") || icon.startsWith("data:")) {
+        return `<img src="${escapeAttr(icon)}" alt="${escapeAttr(name)}" loading="lazy" onerror="this.style.display='none'">`;
+    }
+    return `<i class="${escapeAttr(icon)}"></i>`;
+}
+
 // ============================================================
-// CARD RENDERING
+// CARD
 // ============================================================
-function buildCard(item, index) {
+function buildCard(item) {
     const badge = getBadgeFor(item.category);
-    const domain = getDomain(item.url || "");
     const featured = item.featured === true ? "featured" : "";
 
+    const downloadBtn = item.download
+        ? `<a class="app-btn app-btn-download" href="${escapeAttr(item.download)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+               <i class="fas fa-download"></i>
+               <span>Download</span>
+           </a>`
+        : "";
+
     return `
-        <article class="app-card ${featured}" data-category="${escapeAttr(item.category)}" onclick="openItem('${escapeAttr(item.url)}')" tabindex="0" role="button" aria-label="Open ${escapeAttr(item.name)}">
+        <article class="app-card ${featured}" data-category="${escapeAttr(item.category)}">
             <div class="app-card-top">
                 <div class="app-icon">
                     ${renderIcon(item.icon, item.name)}
@@ -120,18 +109,19 @@ function buildCard(item, index) {
             </div>
             <h3 class="app-name">${escapeHtml(item.name)}</h3>
             <p class="app-desc">${escapeHtml(item.desc)}</p>
-            <div class="app-card-footer">
-                <span class="app-url">${escapeHtml(domain)}</span>
-                <span class="app-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </span>
+            <div class="app-actions">
+                <a class="app-btn app-btn-visit" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                    <span>Visit</span>
+                </a>
+                ${downloadBtn}
             </div>
         </article>
     `;
 }
 
 // ============================================================
-// RENDER GRID
+// RENDER
 // ============================================================
 function renderGrid(items, animate) {
     const grid = document.getElementById("storeGrid");
@@ -148,68 +138,128 @@ function renderGrid(items, animate) {
     grid.style.display = "";
     if (empty) empty.style.display = "none";
 
-    grid.innerHTML = items.map((item, i) => buildCard(item, i)).join("");
+    grid.innerHTML = items.map(buildCard).join("");
 
     if (animate) {
         grid.classList.remove("entering");
-        // Force reflow to restart animation
         void grid.offsetWidth;
         grid.classList.add("entering");
-        setTimeout(() => grid.classList.remove("entering"), 1000);
+        setTimeout(() => grid.classList.remove("entering"), 1100);
     }
 }
 
-// ============================================================
-// FILTER BY TAB
-// ============================================================
 function filterByTab(tab) {
     if (tab === "all") return APPS;
     return APPS.filter((item) => item.category === tab);
 }
 
 // ============================================================
-// TAB SWITCHING — smooth crossfade
+// TABS
 // ============================================================
-function switchTab(tab) {
-    if (tab === currentTab) return;
-    currentTab = tab;
+function switchTab(tab, scroll) {
+    const grid = document.getElementById("storeGrid");
+    if (!grid) return;
 
     // Update button states
-    document.querySelectorAll(".store-tab").forEach((btn) => {
+    document.querySelectorAll(".tab").forEach((btn) => {
         const isActive = btn.dataset.tab === tab;
         btn.classList.toggle("active", isActive);
         btn.setAttribute("aria-selected", isActive ? "true" : "false");
     });
 
-    const grid = document.getElementById("storeGrid");
-    if (!grid) return;
+    if (tab === currentTab) {
+        // Still may want to scroll
+        if (scroll) {
+            document.querySelector(".tabs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        return;
+    }
 
-    // Fade-out, then swap, then fade-in
+    currentTab = tab;
+
     grid.classList.add("switching");
-
     setTimeout(() => {
         grid.classList.remove("switching");
         renderGrid(filterByTab(tab), true);
-    }, 220);
+        if (scroll) {
+            document.querySelector(".tabs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }, 240);
 }
 
 // ============================================================
-// OPEN ITEM
+// DRAWER
 // ============================================================
-window.openItem = function (url) {
-    if (!url) return;
-    window.open(url, "_blank", "noopener,noreferrer");
-};
+function openDrawer() {
+    const drawer = document.getElementById("drawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    const menuBtn = document.getElementById("menuBtn");
+
+    drawer.classList.add("open");
+    backdrop.classList.add("visible");
+    menuBtn.classList.add("open");
+    menuBtn.setAttribute("aria-expanded", "true");
+    drawer.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+}
+
+function closeDrawer() {
+    const drawer = document.getElementById("drawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    const menuBtn = document.getElementById("menuBtn");
+
+    drawer.classList.remove("open");
+    backdrop.classList.remove("visible");
+    menuBtn.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    drawer.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+}
 
 // ============================================================
-// SCROLL TO TOP
+// SCROLL TO TOP FAB
 // ============================================================
-window.scrollToTop = function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-};
+function initScrollTopFab() {
+    const fab = document.getElementById("scrollTop");
+    if (!fab) return;
+
+    const toggle = () => {
+        if (window.scrollY > 400) {
+            fab.classList.add("visible");
+        } else {
+            fab.classList.remove("visible");
+        }
+    };
+
+    window.addEventListener("scroll", toggle, { passive: true });
+    toggle();
+
+    fab.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
 
 // ============================================================
-// MOUSE-TRACKING GLOW on cards
+// NAVBAR SHADOW ON SCROLL
+// ============================================================
+function initNavbarScroll() {
+    const nav = document.getElementById("navbar");
+    if (!nav) return;
+
+    const toggle = () => {
+        if (window.scrollY > 12) {
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    };
+
+    window.addEventListener("scroll", toggle, { passive: true });
+    toggle();
+}
+
+// ============================================================
+// CARD GLOW FOLLOWS MOUSE
 // ============================================================
 function attachCardGlow() {
     document.addEventListener("mousemove", (e) => {
@@ -227,12 +277,8 @@ function attachCardGlow() {
 // KEYBOARD SUPPORT
 // ============================================================
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-        const focused = document.activeElement;
-        if (focused && focused.classList.contains("app-card")) {
-            e.preventDefault();
-            focused.click();
-        }
+    if (e.key === "Escape") {
+        closeDrawer();
     }
 });
 
@@ -240,18 +286,54 @@ document.addEventListener("keydown", (e) => {
 // INIT
 // ============================================================
 function init() {
-    // Bind tabs
-    document.querySelectorAll(".store-tab").forEach((btn) => {
-        btn.addEventListener("click", () => {
-            switchTab(btn.dataset.tab);
+    // Tabs
+    document.querySelectorAll(".tab").forEach((btn) => {
+        btn.addEventListener("click", () => switchTab(btn.dataset.tab, false));
+    });
+
+    // Menu button
+    const menuBtn = document.getElementById("menuBtn");
+    if (menuBtn) menuBtn.addEventListener("click", () => {
+        const isOpen = document.getElementById("drawer").classList.contains("open");
+        isOpen ? closeDrawer() : openDrawer();
+    });
+
+    // Drawer close button
+    const closeBtn = document.getElementById("drawerClose");
+    if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+
+    // Backdrop
+    const backdrop = document.getElementById("drawerBackdrop");
+    if (backdrop) backdrop.addEventListener("click", closeDrawer);
+
+    // Drawer links
+    document.querySelectorAll(".drawer-link").forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const tabTarget = link.dataset.tabTarget;
+            const scrollTarget = link.dataset.scroll;
+
+            closeDrawer();
+
+            if (scrollTarget === "top") {
+                setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
+                return;
+            }
+
+            if (tabTarget) {
+                setTimeout(() => switchTab(tabTarget, true), 200);
+            }
         });
     });
 
-    // First render — no animation class, cards animate individually via CSS
+    // First render
     renderGrid(filterByTab(currentTab), false);
 
-    // Card glow follows mouse
+    // Enhancements
     attachCardGlow();
+    initScrollTopFab();
+    initNavbarScroll();
 }
 
 if (document.readyState === "loading") {
