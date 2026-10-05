@@ -5,40 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Zeeshan's Store — Apps, PWAs & Websites</title>
-    <meta name="description" content="A personal store of apps, PWAs, websites and web experiences built by Zeeshan Khan.">
+    <title>Store — Apps, PWAs & Websites</title>
+    <meta name="description" content="A personal store of apps, PWAs, websites and web experiences.">
     <meta name="robots" content="index, follow">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Google+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ====== AMBIENT BACKGROUND ====== -->
-    <div class="ambient-orb orb-gold"></div>
-    <div class="ambient-orb orb-blue"></div>
-    <div class="ambient-orb orb-copper"></div>
+    <div class="ambient-shape shape-brown"></div>
+    <div class="ambient-shape shape-cinnamon"></div>
 
     <!-- ====== NAV BAR ====== -->
     <nav class="navbar" id="navbar">
         <div class="navbar-inner">
+
             <a href="#" class="navbar-brand" onclick="scrollToTop(); return false;">
-                <span class="navbar-brand-mark">
-                    <span class="navbar-brand-initial">Z</span>
-                </span>
+                <img src="https://i.ibb.co/nJ0Wnqs/relay.jpg" alt="Store" class="navbar-brand-logo">
                 <span class="navbar-brand-text">
-                    <span class="navbar-brand-name">Zeeshan's Store</span>
+                    <span class="navbar-brand-name">Store</span>
                     <span class="navbar-brand-tag">Apps · PWAs · Websites</span>
                 </span>
             </a>
 
             <div class="navbar-actions">
-                <a href="https://relaytalk.vercel.app" target="_blank" rel="noopener" class="navbar-cta">
-                    <i class="fas fa-arrow-up-right-from-square"></i>
-                    <span>Visit RelayTalk</span>
+
+                <a href="https://zeeshan40u.vercel.app" target="_blank" rel="noopener" class="navbar-cta">
+                    <span>Portfolio</span>
+                    <span class="navbar-cta-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="9 7 17 7 17 15"></polyline>
+                        </svg>
+                    </span>
                 </a>
 
                 <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -46,6 +49,7 @@
                     <span class="menu-btn-line"></span>
                     <span class="menu-btn-line"></span>
                 </button>
+
             </div>
         </div>
     </nav>
@@ -56,34 +60,60 @@
         <div class="drawer-header">
             <div class="drawer-title">Menu</div>
             <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-                <i class="fas fa-times"></i>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
         </div>
 
         <nav class="drawer-links">
             <a href="#top" class="drawer-link" data-scroll="top">
-                <span class="drawer-link-icon"><i class="fas fa-compass"></i></span>
+                <span class="drawer-link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                    </svg>
+                </span>
                 <span class="drawer-link-text">
                     <span class="drawer-link-title">Explore</span>
                     <span class="drawer-link-desc">Browse everything</span>
                 </span>
             </a>
             <a href="#apps" class="drawer-link" data-tab-target="apps">
-                <span class="drawer-link-icon"><i class="fas fa-mobile-screen"></i></span>
+                <span class="drawer-link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="20" rx="3"></rect>
+                        <line x1="12" y1="18" x2="12" y2="18.01"></line>
+                    </svg>
+                </span>
                 <span class="drawer-link-text">
                     <span class="drawer-link-title">Apps &amp; PWAs</span>
                     <span class="drawer-link-desc">Installable experiences</span>
                 </span>
             </a>
             <a href="#websites" class="drawer-link" data-tab-target="websites">
-                <span class="drawer-link-icon"><i class="fas fa-code"></i></span>
+                <span class="drawer-link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </span>
                 <span class="drawer-link-text">
                     <span class="drawer-link-title">Websites</span>
                     <span class="drawer-link-desc">Hand-coded sites</span>
                 </span>
             </a>
             <a href="#webs-wb" class="drawer-link" data-tab-target="webs-wb">
-                <span class="drawer-link-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+                <span class="drawer-link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v3"></path>
+                        <path d="M12 18v3"></path>
+                        <path d="M3 12h3"></path>
+                        <path d="M18 12h3"></path>
+                        <circle cx="12" cy="12" r="5"></circle>
+                    </svg>
+                </span>
                 <span class="drawer-link-text">
                     <span class="drawer-link-title">Webs (WB)</span>
                     <span class="drawer-link-desc">Built with site builders</span>
@@ -93,7 +123,7 @@
 
         <div class="drawer-footer">
             <div class="drawer-footer-line"></div>
-            <div class="drawer-footer-text">Crafted by <span>Zeeshan Khan</span></div>
+            <div class="drawer-footer-text">Built with care.</div>
         </div>
     </aside>
 
@@ -105,11 +135,11 @@
                 Personal Collection
             </div>
             <h1 class="hero-title">
-                Everything I've <span class="hero-gradient">built</span>,<br>
-                in one place.
+                Everything I've built,<br>
+                in <span class="hero-accent">one place</span>.
             </h1>
             <p class="hero-sub">
-                A curated store of apps, progressive web apps, self-coded websites, and site-builder projects — always growing.
+                A curated store of apps, progressive web apps, hand-coded websites, and site-builder projects — always growing.
             </p>
         </div>
     </section>
@@ -118,19 +148,42 @@
     <nav class="tabs" role="tablist">
         <div class="tabs-inner">
             <button class="tab active" data-tab="all" role="tab" aria-selected="true">
-                <i class="fas fa-compass tab-icon"></i>
+                <span class="tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                    </svg>
+                </span>
                 <span>All</span>
             </button>
             <button class="tab" data-tab="apps" role="tab" aria-selected="false">
-                <i class="fas fa-mobile-screen tab-icon"></i>
+                <span class="tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="20" rx="3"></rect>
+                        <line x1="12" y1="18" x2="12" y2="18.01"></line>
+                    </svg>
+                </span>
                 <span>Apps &amp; PWAs</span>
             </button>
             <button class="tab" data-tab="websites" role="tab" aria-selected="false">
-                <i class="fas fa-code tab-icon"></i>
+                <span class="tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </span>
                 <span>Websites</span>
             </button>
             <button class="tab" data-tab="webs-wb" role="tab" aria-selected="false">
-                <i class="fas fa-wand-magic-sparkles tab-icon"></i>
+                <span class="tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v3"></path>
+                        <path d="M12 18v3"></path>
+                        <path d="M3 12h3"></path>
+                        <path d="M18 12h3"></path>
+                        <circle cx="12" cy="12" r="5"></circle>
+                    </svg>
+                </span>
                 <span>Webs (WB)</span>
             </button>
         </div>
@@ -142,7 +195,11 @@
 
         <div class="empty" id="storeEmpty" style="display: none;">
             <div class="empty-icon">
-                <i class="fas fa-sparkles"></i>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z"></path>
+                    <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14z"></path>
+                    <path d="M5 14l.6 1.8L7.5 16.5l-1.9.7L5 19l-.6-1.8L2.5 16.5l1.9-.7L5 14z"></path>
+                </svg>
             </div>
             <h3 class="empty-title">Nothing here yet</h3>
             <p class="empty-desc">Projects in this category will appear here soon.</p>
@@ -153,16 +210,17 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-line"></div>
-            <div class="footer-text">
-                Crafted by <span class="footer-accent">Zeeshan Khan</span>
-            </div>
+            <div class="footer-text">Crafted with care.</div>
             <div class="footer-sub">Always building. Always shipping.</div>
         </div>
     </footer>
 
     <!-- ====== SCROLL TOP FAB ====== -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
     </button>
 
     <script src="script.js"></script>
