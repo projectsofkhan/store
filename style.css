@@ -1,6 +1,6 @@
 /* ============================================================ */
-/* Store — Warm Brown · Frost White                              */
-/* No gradients · 100% white base · Solid warm tones             */
+/* Store — Warm Brown · Pure White · 3D Cards                    */
+/* No gradients · 100% white base                                */
 /* ============================================================ */
 
 * {
@@ -27,17 +27,14 @@
 
     /* Neutrals */
     --white: #ffffff;
-    --off-white: #fdfbf7;
     --warm-grey: #8a8078;
-    --warm-grey-light: #b8b0a8;
 
-    /* Royal accent (used sparingly for websites badge) */
+    /* Royal accent */
     --royal-blue: #1a3a8f;
     --royal-blue-soft: #eaefff;
 
     /* Semantic */
     --bg: #ffffff;
-    --bg-warm: var(--linen);
     --surface: #ffffff;
     --surface-warm: var(--linen);
     --surface-hover: var(--cream);
@@ -98,48 +95,6 @@ a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
 /* ============================================================ */
-/* AMBIENT SHAPES — soft warm blobs, no gradients                */
-/* ============================================================ */
-
-.ambient-shape {
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-}
-
-.shape-brown {
-    width: 480px;
-    height: 480px;
-    top: -200px;
-    right: -160px;
-    background: var(--cream);
-    opacity: 0.55;
-    animation: shapeFloat1 26s ease-in-out infinite;
-}
-
-.shape-cinnamon {
-    width: 420px;
-    height: 420px;
-    bottom: 5%;
-    left: -180px;
-    background: var(--linen);
-    opacity: 0.7;
-    animation: shapeFloat2 32s ease-in-out infinite;
-}
-
-@keyframes shapeFloat1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(-40px, 60px) scale(1.06); }
-}
-
-@keyframes shapeFloat2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(50px, -40px) scale(1.08); }
-}
-
-/* ============================================================ */
 /* NAV BAR                                                       */
 /* ============================================================ */
 
@@ -185,10 +140,12 @@ img { display: block; max-width: 100%; }
     width: 42px;
     height: 42px;
     min-width: 42px;
-    border-radius: 13px;
-    object-fit: cover;
+    border-radius: 12px;
+    object-fit: contain;
     border: 1px solid var(--border-2);
-    box-shadow: 0 4px 14px rgba(43, 29, 20, 0.1);
+    background: var(--white);
+    padding: 4px;
+    box-shadow: 0 4px 14px rgba(43, 29, 20, 0.08);
 }
 
 .navbar-brand-text {
@@ -218,7 +175,6 @@ img { display: block; max-width: 100%; }
     gap: 10px;
 }
 
-/* Portfolio CTA pill */
 .navbar-cta {
     display: inline-flex;
     align-items: center;
@@ -300,16 +256,9 @@ img { display: block; max-width: 100%; }
 
 .menu-btn:hover .menu-btn-line { background: var(--cinnamon); }
 
-.menu-btn.open .menu-btn-line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-}
-.menu-btn.open .menu-btn-line:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-.menu-btn.open .menu-btn-line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-}
+.menu-btn.open .menu-btn-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-btn.open .menu-btn-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-btn.open .menu-btn-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* ============================================================ */
 /* DRAWER                                                        */
@@ -686,11 +635,12 @@ img { display: block; max-width: 100%; }
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 22px;
+    gap: 24px;
+    perspective: 1400px;
 }
 
 /* ============================================================ */
-/* APP CARD                                                      */
+/* APP CARD — 3D                                                 */
 /* ============================================================ */
 
 .app-card {
@@ -702,13 +652,23 @@ img { display: block; max-width: 100%; }
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transform-style: preserve-3d;
+    transform:
+        rotateX(var(--rx, 0deg))
+        rotateY(var(--ry, 0deg))
+        translateY(var(--ty, 0))
+        translateZ(var(--tz, 0));
     transition:
-        transform 0.5s var(--ease),
+        transform 0.55s var(--ease),
         border-color 0.5s var(--ease),
         box-shadow 0.5s var(--ease),
         background 0.5s var(--ease);
     animation: cardIn 0.65s var(--ease-out) both;
     will-change: transform;
+    box-shadow:
+        0 1px 2px rgba(43, 29, 20, 0.04),
+        0 4px 12px rgba(43, 29, 20, 0.05),
+        0 20px 40px rgba(43, 29, 20, 0.03);
 }
 
 @keyframes cardIn {
@@ -716,16 +676,60 @@ img { display: block; max-width: 100%; }
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.app-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--border-warm);
-    box-shadow:
-        0 18px 44px rgba(43, 29, 20, 0.1),
-        0 0 0 1px rgba(160, 82, 45, 0.08),
-        var(--shadow-warm);
+/* Subtle warm glow following cursor */
+.app-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(160, 82, 45, 0.055),
+        transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.6s var(--ease);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.app-card:active { transform: translateY(-2px) scale(0.995); }
+.app-card:hover::before { opacity: 1; }
+
+.app-card > * { position: relative; z-index: 1; }
+
+/* Base hover state (fallback for touch) */
+.app-card:hover {
+    border-color: var(--border-warm);
+    box-shadow:
+        0 2px 4px rgba(43, 29, 20, 0.05),
+        0 12px 24px rgba(43, 29, 20, 0.08),
+        0 32px 64px rgba(160, 82, 45, 0.12);
+}
+
+/* 3D interactive state — JS drives --rx/--ry/--ty/--tz */
+.app-card.tilt-active {
+    transition:
+        transform 0.12s linear,
+        border-color 0.4s var(--ease),
+        box-shadow 0.4s var(--ease);
+    border-color: var(--border-warm);
+    box-shadow:
+        0 2px 4px rgba(43, 29, 20, 0.05),
+        0 16px 32px rgba(43, 29, 20, 0.12),
+        0 44px 80px rgba(160, 82, 45, 0.18);
+}
+
+/* Icon, name, badge get slightly lifted in 3D */
+.app-card-top,
+.app-name {
+    transform: translateZ(20px);
+    transition: transform 0.5s var(--ease);
+}
+
+.app-desc,
+.app-actions {
+    transform: translateZ(10px);
+    transition: transform 0.5s var(--ease);
+}
 
 /* Top row */
 .app-card-top {
@@ -741,7 +745,7 @@ img { display: block; max-width: 100%; }
     height: 60px;
     min-width: 60px;
     border-radius: 17px;
-    background: var(--linen);
+    background: var(--white);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -749,10 +753,11 @@ img { display: block; max-width: 100%; }
     font-size: 1.5rem;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 4px 12px rgba(43, 29, 20, 0.08);
     transition:
         transform 0.5s var(--ease),
         border-color 0.5s var(--ease),
-        background 0.5s var(--ease);
+        box-shadow 0.5s var(--ease);
 }
 
 .app-icon img {
@@ -760,6 +765,8 @@ img { display: block; max-width: 100%; }
     height: 100%;
     object-fit: cover;
     border-radius: inherit;
+    padding: 6px;
+    background: var(--white);
 }
 
 .app-icon i {
@@ -776,9 +783,9 @@ img { display: block; max-width: 100%; }
 }
 
 .app-card:hover .app-icon {
-    transform: scale(1.06) rotate(-3deg);
+    transform: translateZ(30px) scale(1.05) rotate(-3deg);
     border-color: var(--border-warm);
-    background: var(--cream);
+    box-shadow: 0 8px 20px rgba(160, 82, 45, 0.18);
 }
 
 /* Badge */
@@ -922,22 +929,9 @@ img { display: block; max-width: 100%; }
 
 .app-btn-download:active { transform: translateY(0) scale(0.98); }
 
-/* Featured */
+/* Featured — no top line, just warm border */
 .app-card.featured {
     border-color: var(--border-warm);
-}
-
-.app-card.featured::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 24px;
-    right: 24px;
-    height: 3px;
-    background: var(--cinnamon);
-    border-radius: 0 0 3px 3px;
-    opacity: 0.85;
-    z-index: 2;
 }
 
 /* ============================================================ */
@@ -1117,7 +1111,7 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 768px) {
     .navbar-inner { height: 62px; padding: 0 16px; gap: 10px; }
-    .navbar-brand-logo { width: 38px; height: 38px; min-width: 38px; border-radius: 12px; }
+    .navbar-brand-logo { width: 38px; height: 38px; min-width: 38px; border-radius: 11px; }
     .navbar-brand-name { font-size: 0.94rem; }
     .navbar-brand-tag { font-size: 0.68rem; }
 
@@ -1131,9 +1125,22 @@ img { display: block; max-width: 100%; }
     .tab-icon { width: 13px; height: 13px; }
 
     .main { padding: 36px 18px 48px; }
-    .grid { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: 1fr; gap: 18px; perspective: none; }
 
-    .app-card { padding: 20px 18px 18px; }
+    .app-card {
+        padding: 20px 18px 18px;
+        transform: none !important;
+    }
+    .app-card:hover {
+        transform: translateY(-3px) !important;
+    }
+    .app-card-top,
+    .app-name,
+    .app-desc,
+    .app-actions {
+        transform: none;
+    }
+
     .app-icon { width: 54px; height: 54px; min-width: 54px; border-radius: 15px; }
     .app-icon i, .app-icon-initial { font-size: 1.25rem; }
     .app-name { font-size: 1.08rem; }
