@@ -11,15 +11,16 @@
 //   url          → link to open
 //   category     → 'apps' | 'pwas' | 'websites' | 'builders'
 //   builder      → (only for builders) 'wix' | 'jimdo' | 'weebly' | 'blogspot' | 'others'
-//   icon         → (only for apps) image URL
+//   icon         → optional image URL for the icon box
 //   featured     → true to appear in Featured tab
 //   download     → optional APK / download page URL
-//   badge        → optional custom badge override (e.g. "RelayTalk")
+//   badge        → optional custom badge override
+//   color        → optional avatar color key for icon-less cards
 // ============================================================
 
 const APPS = [
     // ══════════════════════════════════════════════════════════
-    // APPS (installable APKs — shown only if badged/featured)
+    // APPS (installable APKs)
     // ══════════════════════════════════════════════════════════
     {
         name: "RelayTalk",
@@ -33,13 +34,14 @@ const APPS = [
     },
 
     // ══════════════════════════════════════════════════════════
-    // WEB APPS — PWAs & hand-coded websites (no logos)
+    // WEB APPS — PWAs & hand-coded websites
     // ══════════════════════════════════════════════════════════
     {
         name: "Blitzracer",
         desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
         url: "https://blitzracer.vercel.app",
         category: "websites",
+        icon: "https://blitzracer.vercel.app/cargameicon.png",
         featured: false
     },
     {
@@ -47,6 +49,7 @@ const APPS = [
         desc: "Text-to-speech powered by AI. Type anything and hear it spoken in natural voices — installable as a PWA.",
         url: "https://projectsofkhan.github.io/zeeAi",
         category: "websites",
+        icon: "https://projectsofkhan.github.io/zeeAi/zee512.png",
         featured: true
     },
     {
@@ -54,6 +57,7 @@ const APPS = [
         desc: "Classic carrom board game for three players. Play with friends online, right from your browser.",
         url: "https://carrom3p.vercel.app",
         category: "websites",
+        icon: "https://carrom3p.vercel.app/favicon.ico",
         featured: false
     },
     {
@@ -69,6 +73,7 @@ const APPS = [
         desc: "A narrative-driven game site with story chapters, choices, and an immersive reading-and-playing experience.",
         url: "https://projectsofkhan.github.io/Trail/",
         category: "websites",
+        color: "cinnamon",
         featured: false
     },
 
@@ -81,6 +86,7 @@ const APPS = [
         url: "https://chatwithz.wixsite.com/groups",
         category: "builders",
         builder: "wix",
+        color: "copper",
         featured: false
     },
     {
@@ -89,6 +95,7 @@ const APPS = [
         url: "https://chatwithz.wixsite.com/chats",
         category: "builders",
         builder: "wix",
+        color: "copper",
         featured: false
     },
     {
@@ -97,6 +104,7 @@ const APPS = [
         url: "https://rdjstar.wixsite.com/rdj1",
         category: "builders",
         builder: "wix",
+        color: "cinnamon",
         featured: false
     },
 
@@ -109,6 +117,7 @@ const APPS = [
         url: "https://zeeshan40u.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "caramel",
         featured: false
     },
     {
@@ -117,6 +126,7 @@ const APPS = [
         url: "https://class10th.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "sienna",
         featured: false
     },
     {
@@ -125,6 +135,7 @@ const APPS = [
         url: "https://jsbykhan.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "cinnamon",
         featured: false
     },
     {
@@ -133,6 +144,7 @@ const APPS = [
         url: "https://python40u.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "copper",
         featured: false
     },
     {
@@ -141,6 +153,7 @@ const APPS = [
         url: "https://cssbykhan.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "caramel",
         featured: false
     },
     {
@@ -149,6 +162,7 @@ const APPS = [
         url: "https://zeeshank.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "sienna",
         featured: false
     },
     {
@@ -157,6 +171,7 @@ const APPS = [
         url: "https://siteupdates.jimdofree.com/news/",
         category: "builders",
         builder: "jimdo",
+        color: "taupe",
         featured: false
     },
     {
@@ -165,6 +180,7 @@ const APPS = [
         url: "https://htmlbykhan.jimdofree.com/",
         category: "builders",
         builder: "jimdo",
+        color: "cinnamon",
         featured: false
     },
 
@@ -182,12 +198,10 @@ const APPS = [
     // WEBSITE BUILDERS — Sub: Others
     // ══════════════════════════════════════════════════════════
     // (add later with builder: "others")
-
-    // ── Add more above this line ──
 ];
 
 // ============================================================
-// BUILDER SUBCATEGORY ORDER + LABELS
+// BUILDER SUBCATEGORIES
 // ============================================================
 const BUILDER_SUBCATEGORIES = [
     { id: "wix",      label: "Wix" },
@@ -203,6 +217,18 @@ const BUILDER_LABELS = {
     weebly: "Weebly",
     blogspot: "Blogspot",
     others: "Other"
+};
+
+// ============================================================
+// AVATAR COLOR MAP — warm palette
+// ============================================================
+const AVATAR_COLORS = {
+    cinnamon: { bg: "#f5ede0", fg: "#a0522d" },
+    copper:   { bg: "#f0e6d8", fg: "#8b4a2b" },
+    caramel:  { bg: "#f5ede0", fg: "#b87333" },
+    sienna:   { bg: "#f0e6d8", fg: "#8b4a2b" },
+    taupe:    { bg: "#f5ede0", fg: "#8a8078" },
+    espresso: { bg: "#f0e6d8", fg: "#2b1d14" }
 };
 
 // ============================================================
@@ -240,25 +266,15 @@ function escapeHtml(str) {
 function escapeAttr(str) { return escapeHtml(str); }
 
 function getBadgeFor(item) {
-    // Custom badge overrides the default
     if (item.badge) {
-        return {
-            cls: "badge-relaytalk",
-            svg: SVG.badgeApp,
-            label: escapeHtml(item.badge)
-        };
+        return { cls: "badge-relaytalk", svg: SVG.badgeApp, label: escapeHtml(item.badge) };
     }
     switch (item.category) {
-        case "apps":
-            return { cls: "badge-pwas", svg: SVG.badgeApp, label: "App" };
-        case "pwas":
-            return { cls: "badge-pwas", svg: SVG.badgePwa, label: "PWA" };
-        case "websites":
-            return { cls: "badge-websites", svg: SVG.badgeWebsite, label: "Website" };
-        case "builders":
-            return { cls: "badge-builders", svg: SVG.badgeBuilder, label: "Builder" };
-        default:
-            return { cls: "badge-pwas", svg: SVG.badgePwa, label: "Item" };
+        case "apps":     return { cls: "badge-pwas",     svg: SVG.badgeApp,      label: "App" };
+        case "pwas":     return { cls: "badge-pwas",     svg: SVG.badgePwa,      label: "PWA" };
+        case "websites": return { cls: "badge-websites", svg: SVG.badgeWebsite,  label: "Website" };
+        case "builders": return { cls: "badge-builders", svg: SVG.badgeBuilder,  label: "Builder" };
+        default:         return { cls: "badge-websites", svg: SVG.badgeWebsite,  label: "Item" };
     }
 }
 
@@ -272,16 +288,28 @@ function getCardClass(category) {
     }
 }
 
+// Auto-generate SVG avatar (bg + initial letter)
+function makeAvatar(name, colorKey) {
+    const initial = (name || "?").trim().charAt(0).toUpperCase();
+    const palette = AVATAR_COLORS[colorKey] || AVATAR_COLORS.cinnamon;
+    return `<div class="app-icon-avatar" style="background:${palette.bg};color:${palette.fg};">${escapeHtml(initial)}</div>`;
+}
+
+// Icon block: real image if URL, avatar if color, nothing if neither
 function renderIcon(item) {
-    // Only apps (and websites with an explicit icon) render an icon
-    if (!item.icon) return "";
-    return `<div class="app-icon">
-                <img src="${escapeAttr(item.icon)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.src='${DEFAULT_ICON}'">
-            </div>`;
+    if (item.icon) {
+        return `<div class="app-icon">
+                    <img src="${escapeAttr(item.icon)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.src='${DEFAULT_ICON}'">
+                </div>`;
+    }
+    if (item.color) {
+        return `<div class="app-icon">${makeAvatar(item.name, item.color)}</div>`;
+    }
+    return "";
 }
 
 // ============================================================
-// CARD BUILDER
+// CARD
 // ============================================================
 function buildCard(item) {
     const badge = getBadgeFor(item);
@@ -303,26 +331,28 @@ function buildCard(item) {
            </span>`
         : "";
 
-    const topRow = iconBlock
+    // Layout: with icon → top row (icon + badge). Without icon → card-row (badge + title inline)
+    const topHTML = iconBlock
         ? `<div class="app-card-top">
                ${iconBlock}
                <span class="app-badge ${badge.cls}">
                    ${badge.svg}
                    ${badge.label}
                </span>
-           </div>`
-        : `<div class="app-card-top app-card-top-noicon">
+           </div>
+           <h3 class="app-name">${escapeHtml(item.name)}</h3>`
+        : `<div class="card-row">
                <span class="app-badge ${badge.cls}">
                    ${badge.svg}
                    ${badge.label}
                </span>
+               <h3 class="app-name">${escapeHtml(item.name)}</h3>
            </div>`;
 
     return `
         <article class="app-card ${cardClass} ${featured}" data-category="${escapeAttr(item.category)}">
-            ${topRow}
+            ${topHTML}
             ${builderChip}
-            <h3 class="app-name">${escapeHtml(item.name)}</h3>
             <p class="app-desc">${escapeHtml(item.desc)}</p>
             <div class="app-actions">
                 <a class="app-btn app-btn-visit" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
@@ -411,7 +441,6 @@ const TILT_Z = 22;
 
 function attach3DTilt() {
     const cards = document.querySelectorAll(".app-card");
-
     const isTouch = window.matchMedia("(hover: none)").matches;
     const isNarrow = window.matchMedia("(max-width: 768px)").matches;
     if (isTouch || isNarrow) return;
