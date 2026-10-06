@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Store — Apps, PWAs & Websites</title>
-    <meta name="description" content="A personal store of apps, PWAs, websites and web experiences.">
+    <title>Store — Apps, PWAs, Websites & Builders</title>
+    <meta name="description" content="A curated store of apps, PWAs, hand-coded websites and builder-made sites.">
     <meta name="robots" content="index, follow">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23a0522d'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23a0522d'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +24,16 @@
         <div class="navbar-inner">
 
             <a href="#" class="navbar-brand" onclick="scrollToTop(); return false;">
-                <img src="https://zeeshan40u.vercel.app/favicon.ico" alt="Store" class="navbar-brand-logo">
+                <span class="navbar-brand-logo-wrap">
+                    <!-- Inline SVG store mark -->
+                    <svg class="navbar-brand-logo-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="32" height="32" rx="8" fill="currentColor"/>
+                        <path d="M10 22V10h7a4 4 0 0 1 0 8h-5" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
                 <span class="navbar-brand-text">
                     <span class="navbar-brand-name">Store</span>
-                    <span class="navbar-brand-tag">Apps · PWAs · Websites</span>
+                    <span class="navbar-brand-tag">Apps · PWAs · Sites · Builders</span>
                 </span>
             </a>
 
@@ -64,19 +73,31 @@
         </div>
 
         <nav class="drawer-links">
-            <a href="#top" class="drawer-link" data-scroll="top">
+            <a href="#featured" class="drawer-link" data-tab-target="featured">
                 <span class="drawer-link-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                 </span>
                 <span class="drawer-link-text">
-                    <span class="drawer-link-title">Explore</span>
-                    <span class="drawer-link-desc">Browse everything</span>
+                    <span class="drawer-link-title">Featured</span>
+                    <span class="drawer-link-desc">Hand-picked highlights</span>
                 </span>
             </a>
             <a href="#apps" class="drawer-link" data-tab-target="apps">
+                <span class="drawer-link-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </span>
+                <span class="drawer-link-text">
+                    <span class="drawer-link-title">Apps</span>
+                    <span class="drawer-link-desc">Installable APKs</span>
+                </span>
+            </a>
+            <a href="#pwas" class="drawer-link" data-tab-target="pwas">
                 <span class="drawer-link-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="6" y="2" width="12" height="20" rx="3"></rect>
@@ -84,8 +105,8 @@
                     </svg>
                 </span>
                 <span class="drawer-link-text">
-                    <span class="drawer-link-title">Apps &amp; PWAs</span>
-                    <span class="drawer-link-desc">Installable experiences</span>
+                    <span class="drawer-link-title">PWAs</span>
+                    <span class="drawer-link-desc">Install in browser</span>
                 </span>
             </a>
             <a href="#websites" class="drawer-link" data-tab-target="websites">
@@ -100,19 +121,18 @@
                     <span class="drawer-link-desc">Hand-coded sites</span>
                 </span>
             </a>
-            <a href="#webs-wb" class="drawer-link" data-tab-target="webs-wb">
+            <a href="#builders" class="drawer-link" data-tab-target="builders">
                 <span class="drawer-link-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3v3"></path>
-                        <path d="M12 18v3"></path>
-                        <path d="M3 12h3"></path>
-                        <path d="M18 12h3"></path>
-                        <circle cx="12" cy="12" r="5"></circle>
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
                     </svg>
                 </span>
                 <span class="drawer-link-text">
-                    <span class="drawer-link-title">Webs (WB)</span>
-                    <span class="drawer-link-desc">Built with site builders</span>
+                    <span class="drawer-link-title">Website Builders</span>
+                    <span class="drawer-link-desc">Wix · Jimdo · Weebly · Blogspot</span>
                 </span>
             </a>
         </nav>
@@ -135,7 +155,7 @@
                 in <span class="hero-accent">one place</span>.
             </h1>
             <p class="hero-sub">
-                A curated store of apps, progressive web apps, hand-coded websites, and site-builder projects — always growing.
+                A curated store of apps, progressive web apps, hand-coded websites, and builder-made sites — always growing.
             </p>
         </div>
     </section>
@@ -143,23 +163,32 @@
     <!-- ====== TABS ====== -->
     <nav class="tabs" role="tablist">
         <div class="tabs-inner">
-            <button class="tab active" data-tab="all" role="tab" aria-selected="true">
+            <button class="tab active" data-tab="featured" role="tab" aria-selected="true">
                 <span class="tab-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                 </span>
-                <span>All</span>
+                <span>Featured</span>
             </button>
             <button class="tab" data-tab="apps" role="tab" aria-selected="false">
+                <span class="tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </span>
+                <span>Apps</span>
+            </button>
+            <button class="tab" data-tab="pwas" role="tab" aria-selected="false">
                 <span class="tab-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="6" y="2" width="12" height="20" rx="3"></rect>
                         <line x1="12" y1="18" x2="12" y2="18.01"></line>
                     </svg>
                 </span>
-                <span>Apps &amp; PWAs</span>
+                <span>PWAs</span>
             </button>
             <button class="tab" data-tab="websites" role="tab" aria-selected="false">
                 <span class="tab-icon">
@@ -170,17 +199,16 @@
                 </span>
                 <span>Websites</span>
             </button>
-            <button class="tab" data-tab="webs-wb" role="tab" aria-selected="false">
+            <button class="tab" data-tab="builders" role="tab" aria-selected="false">
                 <span class="tab-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3v3"></path>
-                        <path d="M12 18v3"></path>
-                        <path d="M3 12h3"></path>
-                        <path d="M18 12h3"></path>
-                        <circle cx="12" cy="12" r="5"></circle>
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
                     </svg>
                 </span>
-                <span>Webs (WB)</span>
+                <span>Builders</span>
             </button>
         </div>
     </nav>
