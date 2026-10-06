@@ -9,28 +9,32 @@
 //   name         → display name
 //   desc         → short description
 //   url          → link to open
-//   category     → 'pwas' | 'websites' | 'others'
-//   subcategory  → (only for websites) 'wix' | 'jimdo' | 'weekly' | 'others'
-//   icon         → (only for PWAs) image URL, or omit for favicon
+//   category     → 'apps' | 'pwas' | 'websites' | 'builders'
+//   builder      → (only for builders) 'wix' | 'jimdo' | 'weebly' | 'blogspot' | 'others'
+//   icon         → (only for apps & pwas) image URL, or omit for fallback favicon
 //   featured     → true to appear in Featured tab
-//   download     → optional APK / download page URL
+//   download     → optional APK / download page URL (mostly for apps)
 //
-// Websites DO NOT receive icons — only badge + text.
+// Websites and Builders DO NOT receive icons.
 // ============================================================
 
 const APPS = [
     // ══════════════════════════════════════════════════════════
-    // PWAs
+    // APPS (installable APKs)
     // ══════════════════════════════════════════════════════════
     {
         name: "RelayTalk",
         desc: "Fast, private messaging & calls. Chat, share images and voice notes, make calls — no ads, no noise, no tracking.",
         url: "https://relaytalk.vercel.app",
         download: "https://relaytalk.vercel.app/assets/apk/",
-        category: "pwas",
+        category: "apps",
         icon: "https://relaytalk.vercel.app/favicon.ico",
         featured: true
     },
+
+    // ══════════════════════════════════════════════════════════
+    // PWAs (installable in browser)
+    // ══════════════════════════════════════════════════════════
     {
         name: "Blitzracer",
         desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
@@ -44,7 +48,7 @@ const APPS = [
         desc: "Text-to-speech powered by AI. Type anything and hear it spoken in natural voices — installable as a PWA.",
         url: "https://projectsofkhan.github.io/zeeAi",
         category: "pwas",
-        icon: "https://projectsofkhan.github.io/favicon.ico",
+        icon: "https://projectsofkhan.github.io/zeeAi/zee512.png",
         featured: true
     },
     {
@@ -57,115 +61,13 @@ const APPS = [
     },
 
     // ══════════════════════════════════════════════════════════
-    // WEBSITES — Sub-section: Wix
-    // ══════════════════════════════════════════════════════════
-    {
-        name: "ChatWithZ Groups",
-        desc: "Old Wix site built for personal chat groups and community hangouts.",
-        url: "https://chatwithz.wixsite.com/groups",
-        category: "websites",
-        subcategory: "wix",
-        featured: false
-    },
-    {
-        name: "ChatWithZ Chats",
-        desc: "Companion Wix site with chat rooms — personal-use project from earlier days.",
-        url: "https://chatwithz.wixsite.com/chats",
-        category: "websites",
-        subcategory: "wix",
-        featured: false
-    },
-    {
-        name: "RDJ Star",
-        desc: "A Wix site made as a game hub to play with friends and brothers.",
-        url: "https://rdjstar.wixsite.com/rdj1",
-        category: "websites",
-        subcategory: "wix",
-        featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITES — Sub-section: Jimdo
-    // ══════════════════════════════════════════════════════════
-    {
-        name: "Zeeshan 40u",
-        desc: "Personal Jimdo space with listings and everything I've been working on.",
-        url: "https://zeeshan40u.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "Class 10th Notes",
-        desc: "Study notes site for Class 10th students — clean, organized, and free.",
-        url: "https://class10th.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "JavaScript Notes",
-        desc: "Curated JS notes site — a quick reference for students learning JavaScript.",
-        url: "https://jsbykhan.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "Python Projects",
-        desc: "Collection of Python projects and code snippets, hosted for easy sharing.",
-        url: "https://python40u.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "CSS Notes",
-        desc: "CSS notes site — everything from selectors to flexbox and grid, in one place.",
-        url: "https://cssbykhan.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "Class 9th Notes",
-        desc: "Study notes for Class 9th students, organized by subject.",
-        url: "https://zeeshank.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "Site Updates",
-        desc: "News and updates page for the Class 9th notes site.",
-        url: "https://siteupdates.jimdofree.com/news/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-    {
-        name: "HTML Notes",
-        desc: "HTML notes site — structured notes for anyone starting with web development.",
-        url: "https://htmlbykhan.jimdofree.com/",
-        category: "websites",
-        subcategory: "jimdo",
-        featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITES — Sub-section: Weekly
-    // ══════════════════════════════════════════════════════════
-    // (Empty for now — add sites with subcategory: "weekly"
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITES — Sub-section: Others
+    // WEBSITES (hand-coded, Vercel / GitHub.io)
     // ══════════════════════════════════════════════════════════
     {
         name: "Zeeshan 40u Portfolio",
         desc: "Personal portfolio showcasing projects, skills, and contact — the home base for everything I build.",
         url: "https://zeeshan40u.vercel.app",
         category: "websites",
-        subcategory: "others",
         featured: true
     },
     {
@@ -173,27 +75,141 @@ const APPS = [
         desc: "A narrative-driven game site with story chapters, choices, and an immersive reading-and-playing experience.",
         url: "https://projectsofkhan.github.io/Trail/",
         category: "websites",
-        subcategory: "others",
         featured: false
     },
 
     // ══════════════════════════════════════════════════════════
-    // OTHERS
+    // WEBSITE BUILDERS — Sub: Wix
     // ══════════════════════════════════════════════════════════
-    // (Empty for now)
+    {
+        name: "ChatWithZ Groups",
+        desc: "Old Wix site built for personal chat groups and community hangouts.",
+        url: "https://chatwithz.wixsite.com/groups",
+        category: "builders",
+        builder: "wix",
+        featured: false
+    },
+    {
+        name: "ChatWithZ Chats",
+        desc: "Companion Wix site with chat rooms — personal-use project from earlier days.",
+        url: "https://chatwithz.wixsite.com/chats",
+        category: "builders",
+        builder: "wix",
+        featured: false
+    },
+    {
+        name: "RDJ Star",
+        desc: "A Wix site made as a game hub to play with friends and brothers.",
+        url: "https://rdjstar.wixsite.com/rdj1",
+        category: "builders",
+        builder: "wix",
+        featured: false
+    },
+
+    // ══════════════════════════════════════════════════════════
+    // WEBSITE BUILDERS — Sub: Jimdo
+    // ══════════════════════════════════════════════════════════
+    {
+        name: "Zeeshan 40u",
+        desc: "Personal Jimdo space with listings and everything I've been working on.",
+        url: "https://zeeshan40u.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "Class 10th Notes",
+        desc: "Study notes site for Class 10th students — clean, organized, and free.",
+        url: "https://class10th.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "JavaScript Notes",
+        desc: "Curated JS notes site — a quick reference for students learning JavaScript.",
+        url: "https://jsbykhan.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "Python Projects",
+        desc: "Collection of Python projects and code snippets, hosted for easy sharing.",
+        url: "https://python40u.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "CSS Notes",
+        desc: "CSS notes site — everything from selectors to flexbox and grid, in one place.",
+        url: "https://cssbykhan.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "Class 9th Notes",
+        desc: "Study notes for Class 9th students, organized by subject.",
+        url: "https://zeeshank.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "Site Updates",
+        desc: "News and updates page for the Class 9th notes site.",
+        url: "https://siteupdates.jimdofree.com/news/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+    {
+        name: "HTML Notes",
+        desc: "HTML notes site — structured notes for anyone starting with web development.",
+        url: "https://htmlbykhan.jimdofree.com/",
+        category: "builders",
+        builder: "jimdo",
+        featured: false
+    },
+
+    // ══════════════════════════════════════════════════════════
+    // WEBSITE BUILDERS — Sub: Weebly
+    // ══════════════════════════════════════════════════════════
+    // (add later with builder: "weebly")
+
+    // ══════════════════════════════════════════════════════════
+    // WEBSITE BUILDERS — Sub: Blogspot
+    // ══════════════════════════════════════════════════════════
+    // (add later with builder: "blogspot")
+
+    // ══════════════════════════════════════════════════════════
+    // WEBSITE BUILDERS — Sub: Others
+    // ══════════════════════════════════════════════════════════
+    // (add later with builder: "others")
 
     // ── Add more above this line ──
 ];
 
 // ============================================================
-// WEBSITE SUBCATEGORY ORDER + LABELS
+// BUILDER SUBCATEGORY ORDER + LABELS
 // ============================================================
-const WEBSITE_SUBCATEGORIES = [
-    { id: "wix",    label: "Wix" },
-    { id: "jimdo",  label: "Jimdo" },
-    { id: "weekly", label: "Weekly" },
-    { id: "others", label: "Others" }
+const BUILDER_SUBCATEGORIES = [
+    { id: "wix",      label: "Wix" },
+    { id: "jimdo",    label: "Jimdo" },
+    { id: "weebly",   label: "Weebly" },
+    { id: "blogspot", label: "Blogspot" },
+    { id: "others",   label: "Others" }
 ];
+
+const BUILDER_LABELS = {
+    wix: "Wix",
+    jimdo: "Jimdo",
+    weebly: "Weebly",
+    blogspot: "Blogspot",
+    others: "Other"
+};
 
 // ============================================================
 // STATE
@@ -206,12 +222,13 @@ let currentTab = "featured";
 const SVG = {
     externalLink: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="9 7 17 7 17 15"></polyline></svg>`,
     download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
-    badgeApp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"></rect><line x1="12" y1="18" x2="12" y2="18.01"></line></svg>`,
+    badgeApp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
+    badgePwa: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"></rect><line x1="12" y1="18" x2="12" y2="18.01"></line></svg>`,
     badgeWebsite: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
-    badgeOthers: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>`
+    badgeBuilder: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>`
 };
 
-const DEFAULT_PWA_ICON = "https://zeeshan40u.vercel.app/favicon.ico";
+const DEFAULT_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23a0522d'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
 
 // ============================================================
 // HELPERS
@@ -230,30 +247,44 @@ function escapeAttr(str) { return escapeHtml(str); }
 
 function getBadgeFor(category) {
     switch (category) {
+        case "apps":
+            return { cls: "badge-apps", svg: SVG.badgeApp, label: "App" };
         case "pwas":
-            return { cls: "badge-apps", svg: SVG.badgeApp, label: "PWA" };
+            return { cls: "badge-pwas", svg: SVG.badgePwa, label: "PWA" };
         case "websites":
             return { cls: "badge-websites", svg: SVG.badgeWebsite, label: "Website" };
-        case "others":
-            return { cls: "badge-others", svg: SVG.badgeOthers, label: "Other" };
+        case "builders":
+            return { cls: "badge-builders", svg: SVG.badgeBuilder, label: "Builder" };
         default:
-            return { cls: "badge-others", svg: SVG.badgeOthers, label: "Item" };
+            return { cls: "badge-pwas", svg: SVG.badgePwa, label: "Item" };
+    }
+}
+
+function getCardClass(category) {
+    switch (category) {
+        case "apps":     return "card-app";
+        case "pwas":     return "card-pwa";
+        case "websites": return "card-website";
+        case "builders": return "card-builder";
+        default:         return "card-pwa";
     }
 }
 
 function renderIcon(item) {
-    if (item.category === "websites") return "";
-    const iconSrc = item.icon || DEFAULT_PWA_ICON;
+    // Only apps and pwas have icons
+    if (item.category !== "apps" && item.category !== "pwas") return "";
+    const iconSrc = item.icon || DEFAULT_ICON;
     return `<div class="app-icon">
-                <img src="${escapeAttr(iconSrc)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.src='${DEFAULT_PWA_ICON}'">
+                <img src="${escapeAttr(iconSrc)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.src='${DEFAULT_ICON}'">
             </div>`;
 }
 
 // ============================================================
-// CARD
+// CARD BUILDER
 // ============================================================
 function buildCard(item) {
     const badge = getBadgeFor(item.category);
+    const cardClass = getCardClass(item.category);
     const featured = item.featured === true ? "featured" : "";
     const iconBlock = renderIcon(item);
 
@@ -262,6 +293,14 @@ function buildCard(item) {
                <span class="app-btn-icon">${SVG.download}</span>
                <span>Download</span>
            </a>`
+        : "";
+
+    // Builder chip (only for builders)
+    const builderChip = item.category === "builders" && item.builder
+        ? `<span class="builder-chip" data-builder="${escapeAttr(item.builder)}">
+               <span class="builder-chip-dot"></span>
+               ${escapeHtml(BUILDER_LABELS[item.builder] || "Builder")}
+           </span>`
         : "";
 
     const topRow = iconBlock
@@ -280,8 +319,9 @@ function buildCard(item) {
            </div>`;
 
     return `
-        <article class="app-card ${featured}" data-category="${escapeAttr(item.category)}">
+        <article class="app-card ${cardClass} ${featured}" data-category="${escapeAttr(item.category)}">
             ${topRow}
+            ${builderChip}
             <h3 class="app-name">${escapeHtml(item.name)}</h3>
             <p class="app-desc">${escapeHtml(item.desc)}</p>
             <div class="app-actions">
@@ -296,7 +336,7 @@ function buildCard(item) {
 }
 
 // ============================================================
-// SECTION HEADER (for websites)
+// SECTION HEADER
 // ============================================================
 function buildSectionHeader(label, count) {
     return `
@@ -328,12 +368,11 @@ function renderGrid(items, animate) {
     grid.style.display = "";
     if (empty) empty.style.display = "none";
 
-    // Group websites by subcategory
     let html = "";
 
-    if (currentTab === "websites") {
-        WEBSITE_SUBCATEGORIES.forEach((sub) => {
-            const group = items.filter((item) => item.subcategory === sub.id);
+    if (currentTab === "builders") {
+        BUILDER_SUBCATEGORIES.forEach((sub) => {
+            const group = items.filter((item) => item.builder === sub.id);
             if (group.length === 0) return;
             html += buildSectionHeader(sub.label, group.length);
             html += group.map(buildCard).join("");
@@ -350,7 +389,7 @@ function renderGrid(items, animate) {
         grid.classList.remove("entering");
         void grid.offsetWidth;
         grid.classList.add("entering");
-        setTimeout(() => grid.classList.remove("entering"), 1100);
+        setTimeout(() => grid.classList.remove("entering"), 1200);
     }
 }
 
@@ -362,10 +401,10 @@ function filterByTab(tab) {
 // ============================================================
 // 3D TILT
 // ============================================================
-const TILT_MAX_X = 6;
-const TILT_MAX_Y = 8;
-const TILT_LIFT = -6;
-const TILT_Z = 20;
+const TILT_MAX_X = 7;
+const TILT_MAX_Y = 9;
+const TILT_LIFT = -7;
+const TILT_Z = 24;
 
 function attach3DTilt() {
     const cards = document.querySelectorAll(".app-card");
