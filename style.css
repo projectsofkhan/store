@@ -13,7 +13,6 @@
 }
 
 :root {
-    /* Warm brown palette */
     --espresso: #2b1d14;
     --chocolate: #3d2a1c;
     --sienna: #8b4a2b;
@@ -25,15 +24,12 @@
     --cream: #f0e6d8;
     --linen: #faf6f0;
 
-    /* Neutrals */
     --white: #ffffff;
     --warm-grey: #8a8078;
 
-    /* Royal accent */
     --royal-blue: #1a3a8f;
     --royal-blue-soft: #eaefff;
 
-    /* Semantic */
     --bg: #ffffff;
     --surface: #ffffff;
     --surface-warm: var(--linen);
@@ -136,16 +132,26 @@ img { display: block; max-width: 100%; }
 
 .navbar-brand:hover { transform: translateY(-1px); }
 
-.navbar-brand-logo {
+.navbar-brand-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 42px;
     height: 42px;
     min-width: 42px;
     border-radius: 12px;
-    object-fit: contain;
-    border: 1px solid var(--border-2);
     background: var(--white);
-    padding: 4px;
+    border: 1px solid var(--border-2);
     box-shadow: 0 4px 14px rgba(43, 29, 20, 0.08);
+    overflow: hidden;
+}
+
+.navbar-brand-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
 }
 
 .navbar-brand-text {
@@ -215,7 +221,6 @@ img { display: block; max-width: 100%; }
     transform: translate(2px, -2px);
 }
 
-/* Hamburger */
 .menu-btn {
     position: relative;
     width: 42px;
@@ -640,6 +645,69 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================ */
+/* WEBSITE SUB-SECTION HEADER                                    */
+/* ============================================================ */
+
+.website-section-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 22px;
+    margin-bottom: 4px;
+    padding: 0 4px;
+    animation: sectionIn 0.6s var(--ease-out) both;
+}
+
+.website-section-header:first-child {
+    margin-top: 0;
+}
+
+@keyframes sectionIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.website-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--cream);
+    border: 1px solid var(--border-warm);
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--cinnamon);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.website-section-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--cinnamon);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.website-section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-2);
+    border-radius: 1px;
+}
+
+/* ============================================================ */
 /* APP CARD — 3D                                                 */
 /* ============================================================ */
 
@@ -676,7 +744,6 @@ img { display: block; max-width: 100%; }
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Subtle warm glow following cursor */
 .app-card::before {
     content: '';
     position: absolute;
@@ -696,7 +763,6 @@ img { display: block; max-width: 100%; }
 
 .app-card > * { position: relative; z-index: 1; }
 
-/* Base hover state (fallback for touch) */
 .app-card:hover {
     border-color: var(--border-warm);
     box-shadow:
@@ -705,7 +771,6 @@ img { display: block; max-width: 100%; }
         0 32px 64px rgba(160, 82, 45, 0.12);
 }
 
-/* 3D interactive state — JS drives --rx/--ry/--ty/--tz */
 .app-card.tilt-active {
     transition:
         transform 0.12s linear,
@@ -718,7 +783,6 @@ img { display: block; max-width: 100%; }
         0 44px 80px rgba(160, 82, 45, 0.18);
 }
 
-/* Icon, name, badge get slightly lifted in 3D */
 .app-card-top,
 .app-name {
     transform: translateZ(20px);
@@ -731,13 +795,16 @@ img { display: block; max-width: 100%; }
     transition: transform 0.5s var(--ease);
 }
 
-/* Top row */
 .app-card-top {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 14px;
     margin-bottom: 18px;
+}
+
+.app-card-top-noicon {
+    justify-content: flex-end;
 }
 
 .app-icon {
@@ -750,7 +817,6 @@ img { display: block; max-width: 100%; }
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
     overflow: hidden;
     position: relative;
     box-shadow: 0 4px 12px rgba(43, 29, 20, 0.08);
@@ -761,12 +827,13 @@ img { display: block; max-width: 100%; }
 }
 
 .app-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: inherit;
-    padding: 6px;
-    background: var(--white);
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 10px;
+    background: transparent;
+    padding: 0;
 }
 
 .app-icon i {
@@ -788,7 +855,6 @@ img { display: block; max-width: 100%; }
     box-shadow: 0 8px 20px rgba(160, 82, 45, 0.18);
 }
 
-/* Badge */
 .app-badge {
     display: inline-flex;
     align-items: center;
@@ -823,13 +889,12 @@ img { display: block; max-width: 100%; }
     border: 1px solid rgba(26, 58, 143, 0.18);
 }
 
-.badge-wb {
+.badge-others {
     background: var(--linen);
     color: var(--copper);
     border: 1px solid rgba(184, 115, 51, 0.28);
 }
 
-/* Text */
 .app-name {
     font-family: 'Google Sans', 'Inter', sans-serif;
     font-size: 1.18rem;
@@ -852,7 +917,6 @@ img { display: block; max-width: 100%; }
     overflow: hidden;
 }
 
-/* Buttons row */
 .app-actions {
     display: flex;
     gap: 8px;
@@ -929,7 +993,6 @@ img { display: block; max-width: 100%; }
 
 .app-btn-download:active { transform: translateY(0) scale(0.98); }
 
-/* Featured — no top line, just warm border */
 .app-card.featured {
     border-color: var(--border-warm);
 }
@@ -1078,7 +1141,8 @@ img { display: block; max-width: 100%; }
 /* TAB SWITCH ANIMATIONS                                         */
 /* ============================================================ */
 
-.grid.switching .app-card {
+.grid.switching .app-card,
+.grid.switching .website-section-header {
     animation: cardOut 0.3s var(--ease) both;
 }
 
@@ -1098,6 +1162,10 @@ img { display: block; max-width: 100%; }
 .grid.entering .app-card:nth-child(6)  { animation-delay: 0.27s; }
 .grid.entering .app-card:nth-child(7)  { animation-delay: 0.32s; }
 .grid.entering .app-card:nth-child(8)  { animation-delay: 0.37s; }
+.grid.entering .app-card:nth-child(9)  { animation-delay: 0.42s; }
+.grid.entering .app-card:nth-child(10) { animation-delay: 0.47s; }
+.grid.entering .app-card:nth-child(11) { animation-delay: 0.52s; }
+.grid.entering .app-card:nth-child(12) { animation-delay: 0.57s; }
 
 /* ============================================================ */
 /* RESPONSIVE                                                    */
@@ -1111,7 +1179,8 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 768px) {
     .navbar-inner { height: 62px; padding: 0 16px; gap: 10px; }
-    .navbar-brand-logo { width: 38px; height: 38px; min-width: 38px; border-radius: 11px; }
+    .navbar-brand-logo-wrap { width: 38px; height: 38px; min-width: 38px; border-radius: 11px; }
+    .navbar-brand-logo { width: 24px; height: 24px; }
     .navbar-brand-name { font-size: 0.94rem; }
     .navbar-brand-tag { font-size: 0.68rem; }
 
@@ -1149,6 +1218,8 @@ img { display: block; max-width: 100%; }
 
     .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
     .scroll-top svg { width: 16px; height: 16px; }
+
+    .website-section-header { margin-top: 12px; }
 }
 
 @media (max-width: 420px) {
@@ -1158,6 +1229,8 @@ img { display: block; max-width: 100%; }
 
     .app-btn { font-size: 0.78rem; padding: 10px 10px; }
     .app-btn-icon { width: 12px; height: 12px; }
+
+    .website-section-label { font-size: 0.68rem; padding: 5px 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
