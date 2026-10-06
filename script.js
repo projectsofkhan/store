@@ -23,7 +23,7 @@ const APPS = [
     {
         name: "Blitzracer",
         desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
-        url: "https://blitzracer.vercel.app",
+        url: "https://blitzracer.github.io/Cargame",
         category: "websites",
         icon: "https://blitzracer.vercel.app/cargame512.png",
         featured: false
