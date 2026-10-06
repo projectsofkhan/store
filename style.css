@@ -79,10 +79,7 @@ button {
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
-/* ============================================================ */
-/* NAV BAR                                                       */
-/* ============================================================ */
-
+/* NAV BAR */
 .navbar {
     position: sticky;
     top: 0;
@@ -129,22 +126,22 @@ img { display: block; max-width: 100%; }
     height: 42px;
     min-width: 42px;
     border-radius: 12px;
-    background: var(--cream);
-    color: var(--cinnamon);
+    background: var(--white);
     border: 1px solid var(--border-warm);
     overflow: hidden;
-    transition: background 0.4s var(--ease), transform 0.4s var(--ease);
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
 .navbar-brand:hover .navbar-brand-logo-wrap {
-    background: var(--linen);
     transform: rotate(-3deg);
+    border-color: var(--cinnamon);
 }
 
-.navbar-brand-logo-svg {
-    width: 22px;
-    height: 22px;
+.navbar-brand-logo-img {
+    width: 26px;
+    height: 26px;
     display: block;
+    object-fit: contain;
 }
 
 .navbar-brand-text {
@@ -240,10 +237,7 @@ img { display: block; max-width: 100%; }
 .menu-btn.open .menu-btn-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .menu-btn.open .menu-btn-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* ============================================================ */
-/* DRAWER                                                        */
-/* ============================================================ */
-
+/* DRAWER */
 .drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -404,10 +398,7 @@ img { display: block; max-width: 100%; }
     letter-spacing: -0.005em;
 }
 
-/* ============================================================ */
-/* HERO                                                          */
-/* ============================================================ */
-
+/* HERO */
 .hero {
     position: relative;
     z-index: 1;
@@ -493,10 +484,7 @@ img { display: block; max-width: 100%; }
     line-height: 1.65;
 }
 
-/* ============================================================ */
-/* TABS                                                          */
-/* ============================================================ */
-
+/* TABS */
 .tabs {
     position: sticky;
     top: 68px;
@@ -559,10 +547,7 @@ img { display: block; max-width: 100%; }
 .tab.active .tab-icon { color: var(--cinnamon); opacity: 1; }
 .tab:active { transform: translateY(0) scale(0.97); }
 
-/* ============================================================ */
-/* MAIN GRID                                                     */
-/* ============================================================ */
-
+/* MAIN GRID */
 .main {
     position: relative;
     z-index: 1;
@@ -578,10 +563,7 @@ img { display: block; max-width: 100%; }
     perspective: 1400px;
 }
 
-/* ============================================================ */
-/* SUBCATEGORY HEADER                                            */
-/* ============================================================ */
-
+/* SECTION HEADER */
 .website-section-header {
     grid-column: 1 / -1;
     display: flex;
@@ -639,10 +621,7 @@ img { display: block; max-width: 100%; }
     border-radius: 1px;
 }
 
-/* ============================================================ */
-/* CARD — 3D                                                     */
-/* ============================================================ */
-
+/* CARD */
 .app-card {
     position: relative;
     background: var(--white);
@@ -727,12 +706,12 @@ img { display: block; max-width: 100%; }
     transition: transform 0.5s var(--ease);
 }
 
-/* Card type variations */
-.app-card.card-app { border-color: var(--border-2); }
-.app-card.card-pwa { border-color: var(--border-warm); }
-.app-card.card-website { padding-top: 20px; }
-.app-card.card-builder { background: var(--linen); }
-.app-card.card-builder:hover { background: var(--cream); }
+/* Card type variations — all pure white */
+.app-card.card-app { border-color: var(--border-2); background: var(--white); }
+.app-card.card-pwa { border-color: var(--border-warm); background: var(--white); }
+.app-card.card-website { padding-top: 20px; background: var(--white); }
+.app-card.card-builder { background: var(--white); }
+.app-card.card-builder:hover { background: var(--white); }
 
 /* Website top strip */
 .app-card.card-website::after {
@@ -750,11 +729,7 @@ img { display: block; max-width: 100%; }
 
 .app-card.card-website:hover::after { opacity: 1; }
 
-/* ============================================================ */
-/* CARD LAYOUTS                                                  */
-/* ============================================================ */
-
-/* Row 1 (icon + badge) — used for cards WITH icon */
+/* Card layouts */
 .app-card-top {
     display: flex;
     align-items: center;
@@ -763,8 +738,6 @@ img { display: block; max-width: 100%; }
     margin-bottom: 14px;
 }
 
-/* Horizontal header — used for websites & builders WITHOUT icons
-   Badge on left, title inline to its right */
 .card-row {
     display: flex;
     align-items: center;
@@ -784,10 +757,7 @@ img { display: block; max-width: 100%; }
     text-overflow: ellipsis;
 }
 
-/* ============================================================ */
-/* ICON — fills its box                                          */
-/* ============================================================ */
-
+/* Icon */
 .app-icon {
     width: 58px;
     height: 58px;
@@ -810,7 +780,6 @@ img { display: block; max-width: 100%; }
     background: var(--white);
 }
 
-/* SVG avatar for icons without images */
 .app-icon-avatar {
     width: 100%;
     height: 100%;
@@ -833,10 +802,7 @@ img { display: block; max-width: 100%; }
     box-shadow: 0 10px 24px rgba(160, 82, 45, 0.18);
 }
 
-/* ============================================================ */
-/* BADGE                                                         */
-/* ============================================================ */
-
+/* Badge */
 .app-badge {
     display: inline-flex;
     align-items: center;
@@ -883,10 +849,7 @@ img { display: block; max-width: 100%; }
     border: 1px solid var(--cinnamon);
 }
 
-/* ============================================================ */
-/* BUILDER CHIP                                                  */
-/* ============================================================ */
-
+/* Builder chip */
 .builder-chip {
     display: inline-flex;
     align-items: center;
@@ -918,10 +881,7 @@ img { display: block; max-width: 100%; }
 .builder-chip[data-builder="weebly"] .builder-chip-dot   { background: #31a152; }
 .builder-chip[data-builder="blogspot"] .builder-chip-dot { background: #f57c00; }
 
-/* ============================================================ */
-/* TEXT                                                          */
-/* ============================================================ */
-
+/* Text */
 .app-name {
     font-family: 'Google Sans', 'Inter', sans-serif;
     font-size: 1.16rem;
@@ -944,10 +904,7 @@ img { display: block; max-width: 100%; }
     overflow: hidden;
 }
 
-/* ============================================================ */
-/* BUTTONS                                                       */
-/* ============================================================ */
-
+/* Buttons */
 .app-actions {
     display: flex;
     gap: 8px;
@@ -1010,10 +967,7 @@ img { display: block; max-width: 100%; }
 
 .app-btn-download:active { transform: translateY(0) scale(0.98); }
 
-/* ============================================================ */
-/* EMPTY                                                         */
-/* ============================================================ */
-
+/* Empty */
 .empty {
     display: flex;
     flex-direction: column;
@@ -1059,10 +1013,7 @@ img { display: block; max-width: 100%; }
     line-height: 1.55;
 }
 
-/* ============================================================ */
-/* FOOTER                                                        */
-/* ============================================================ */
-
+/* Footer */
 .footer {
     position: relative;
     z-index: 1;
@@ -1095,10 +1046,7 @@ img { display: block; max-width: 100%; }
     font-style: italic;
 }
 
-/* ============================================================ */
-/* SCROLL TOP FAB                                                */
-/* ============================================================ */
-
+/* Scroll top FAB */
 .scroll-top {
     position: fixed;
     bottom: 24px;
@@ -1134,10 +1082,7 @@ img { display: block; max-width: 100%; }
 
 .scroll-top:active { transform: translateY(0) scale(0.96); }
 
-/* ============================================================ */
-/* TAB SWITCH                                                    */
-/* ============================================================ */
-
+/* Tab switch animation */
 .grid.switching .app-card,
 .grid.switching .website-section-header {
     animation: cardOut 0.3s var(--ease) both;
@@ -1160,10 +1105,7 @@ img { display: block; max-width: 100%; }
 .grid.entering .app-card:nth-child(9)  { animation-delay: 0.34s; }
 .grid.entering .app-card:nth-child(10) { animation-delay: 0.38s; }
 
-/* ============================================================ */
-/* RESPONSIVE                                                    */
-/* ============================================================ */
-
+/* Responsive */
 @media (max-width: 900px) {
     .navbar-cta span:first-child { display: none; }
     .navbar-cta { padding: 9px 11px; gap: 0; }
@@ -1173,7 +1115,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 768px) {
     .navbar-inner { height: 62px; padding: 0 16px; gap: 10px; }
     .navbar-brand-logo-wrap { width: 38px; height: 38px; min-width: 38px; border-radius: 11px; }
-    .navbar-brand-logo-svg { width: 20px; height: 20px; }
+    .navbar-brand-logo-img { width: 22px; height: 22px; }
     .navbar-brand-name { font-size: 0.94rem; }
     .navbar-brand-tag { font-size: 0.66rem; }
 
