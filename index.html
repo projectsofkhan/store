@@ -9,7 +9,8 @@
     <meta name="description" content="A curated store of web apps, hand-coded websites, and builder-made sites.">
     <meta name="robots" content="index, follow">
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23a0522d'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="apple-touch-icon" href="/logo.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,18 +19,12 @@
 </head>
 <body>
 
-    <!-- ====== NAV BAR ====== -->
     <nav class="navbar" id="navbar">
         <div class="navbar-inner">
 
             <a href="#" class="navbar-brand" onclick="scrollToTop(); return false;">
                 <span class="navbar-brand-logo-wrap">
-                    <!-- Shopping bag SVG mark -->
-                    <svg class="navbar-brand-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
+                    <img src="/logo.svg" alt="Store" class="navbar-brand-logo-img">
                 </span>
                 <span class="navbar-brand-text">
                     <span class="navbar-brand-name">Store</span>
@@ -59,7 +54,6 @@
         </div>
     </nav>
 
-    <!-- ====== DRAWER MENU ====== -->
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
     <aside class="drawer" id="drawer" aria-hidden="true">
         <div class="drawer-header">
@@ -119,7 +113,6 @@
         </div>
     </aside>
 
-    <!-- ====== HERO ====== -->
     <section class="hero" id="top">
         <div class="hero-inner">
             <div class="hero-eyebrow">
@@ -136,7 +129,6 @@
         </div>
     </section>
 
-    <!-- ====== TABS ====== -->
     <nav class="tabs" role="tablist">
         <div class="tabs-inner">
             <button class="tab active" data-tab="featured" role="tab" aria-selected="true">
@@ -171,7 +163,6 @@
         </div>
     </nav>
 
-    <!-- ====== MAIN GRID ====== -->
     <main class="main">
         <div class="grid" id="storeGrid"></div>
 
@@ -188,7 +179,6 @@
         </div>
     </main>
 
-    <!-- ====== FOOTER ====== -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-line"></div>
@@ -197,7 +187,6 @@
         </div>
     </footer>
 
-    <!-- ====== SCROLL TOP FAB ====== -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="19" x2="12" y2="5"></line>
