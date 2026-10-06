@@ -11,16 +11,15 @@
 //   url          → link to open
 //   category     → 'apps' | 'pwas' | 'websites' | 'builders'
 //   builder      → (only for builders) 'wix' | 'jimdo' | 'weebly' | 'blogspot' | 'others'
-//   icon         → (only for apps & pwas) image URL, or omit for fallback favicon
+//   icon         → (only for apps) image URL
 //   featured     → true to appear in Featured tab
-//   download     → optional APK / download page URL (mostly for apps)
-//
-// Websites and Builders DO NOT receive icons.
+//   download     → optional APK / download page URL
+//   badge        → optional custom badge override (e.g. "RelayTalk")
 // ============================================================
 
 const APPS = [
     // ══════════════════════════════════════════════════════════
-    // APPS (installable APKs)
+    // APPS (installable APKs — shown only if badged/featured)
     // ══════════════════════════════════════════════════════════
     {
         name: "RelayTalk",
@@ -29,45 +28,40 @@ const APPS = [
         download: "https://relaytalk.vercel.app/assets/apk/",
         category: "apps",
         icon: "https://relaytalk.vercel.app/favicon.ico",
+        badge: "RelayTalk",
         featured: true
     },
 
     // ══════════════════════════════════════════════════════════
-    // PWAs (installable in browser)
+    // WEB APPS — PWAs & hand-coded websites (no logos)
     // ══════════════════════════════════════════════════════════
     {
         name: "Blitzracer",
         desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
         url: "https://blitzracer.vercel.app",
-        category: "pwas",
-        icon: "https://blitzracer.vercel.app/favicon.ico",
+        category: "websites",
         featured: false
     },
     {
         name: "ZeeAI TTS",
         desc: "Text-to-speech powered by AI. Type anything and hear it spoken in natural voices — installable as a PWA.",
         url: "https://projectsofkhan.github.io/zeeAi",
-        category: "pwas",
-        icon: "https://projectsofkhan.github.io/zeeAi/zee512.png",
+        category: "websites",
         featured: true
     },
     {
         name: "3 Player Carrom",
         desc: "Classic carrom board game for three players. Play with friends online, right from your browser.",
         url: "https://carrom3p.vercel.app",
-        category: "pwas",
-        icon: "https://carrom3p.vercel.app/favicon.ico",
+        category: "websites",
         featured: false
     },
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITES (hand-coded, Vercel / GitHub.io)
-    // ══════════════════════════════════════════════════════════
     {
         name: "Zeeshan 40u Portfolio",
         desc: "Personal portfolio showcasing projects, skills, and contact — the home base for everything I build.",
         url: "https://zeeshan40u.vercel.app",
         category: "websites",
+        icon: "https://zeeshan40u.vercel.app/favicon.ico",
         featured: true
     },
     {
@@ -228,7 +222,7 @@ const SVG = {
     badgeBuilder: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>`
 };
 
-const DEFAULT_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23a0522d'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
+const DEFAULT_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fbf6ee'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='%23a0522d' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
 
 // ============================================================
 // HELPERS
@@ -245,10 +239,18 @@ function escapeHtml(str) {
 
 function escapeAttr(str) { return escapeHtml(str); }
 
-function getBadgeFor(category) {
-    switch (category) {
+function getBadgeFor(item) {
+    // Custom badge overrides the default
+    if (item.badge) {
+        return {
+            cls: "badge-relaytalk",
+            svg: SVG.badgeApp,
+            label: escapeHtml(item.badge)
+        };
+    }
+    switch (item.category) {
         case "apps":
-            return { cls: "badge-apps", svg: SVG.badgeApp, label: "App" };
+            return { cls: "badge-pwas", svg: SVG.badgeApp, label: "App" };
         case "pwas":
             return { cls: "badge-pwas", svg: SVG.badgePwa, label: "PWA" };
         case "websites":
@@ -266,16 +268,15 @@ function getCardClass(category) {
         case "pwas":     return "card-pwa";
         case "websites": return "card-website";
         case "builders": return "card-builder";
-        default:         return "card-pwa";
+        default:         return "card-website";
     }
 }
 
 function renderIcon(item) {
-    // Only apps and pwas have icons
-    if (item.category !== "apps" && item.category !== "pwas") return "";
-    const iconSrc = item.icon || DEFAULT_ICON;
+    // Only apps (and websites with an explicit icon) render an icon
+    if (!item.icon) return "";
     return `<div class="app-icon">
-                <img src="${escapeAttr(iconSrc)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.src='${DEFAULT_ICON}'">
+                <img src="${escapeAttr(item.icon)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.src='${DEFAULT_ICON}'">
             </div>`;
 }
 
@@ -283,7 +284,7 @@ function renderIcon(item) {
 // CARD BUILDER
 // ============================================================
 function buildCard(item) {
-    const badge = getBadgeFor(item.category);
+    const badge = getBadgeFor(item);
     const cardClass = getCardClass(item.category);
     const featured = item.featured === true ? "featured" : "";
     const iconBlock = renderIcon(item);
@@ -295,7 +296,6 @@ function buildCard(item) {
            </a>`
         : "";
 
-    // Builder chip (only for builders)
     const builderChip = item.category === "builders" && item.builder
         ? `<span class="builder-chip" data-builder="${escapeAttr(item.builder)}">
                <span class="builder-chip-dot"></span>
@@ -389,22 +389,25 @@ function renderGrid(items, animate) {
         grid.classList.remove("entering");
         void grid.offsetWidth;
         grid.classList.add("entering");
-        setTimeout(() => grid.classList.remove("entering"), 1200);
+        setTimeout(() => grid.classList.remove("entering"), 1100);
     }
 }
 
 function filterByTab(tab) {
     if (tab === "featured") return APPS.filter((item) => item.featured === true);
+    if (tab === "webapps") {
+        return APPS.filter((item) => item.category === "websites" || item.category === "pwas");
+    }
     return APPS.filter((item) => item.category === tab);
 }
 
 // ============================================================
 // 3D TILT
 // ============================================================
-const TILT_MAX_X = 7;
-const TILT_MAX_Y = 9;
-const TILT_LIFT = -7;
-const TILT_Z = 24;
+const TILT_MAX_X = 6;
+const TILT_MAX_Y = 8;
+const TILT_LIFT = -6;
+const TILT_Z = 22;
 
 function attach3DTilt() {
     const cards = document.querySelectorAll(".app-card");
