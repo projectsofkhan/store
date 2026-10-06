@@ -2,25 +2,9 @@
 /* Store — Controller                                            */
 /* ============================================================ */
 
-// ============================================================
-// DATA
-// ============================================================
-// Fields:
-//   name         → display name
-//   desc         → short description
-//   url          → link to open
-//   category     → 'apps' | 'pwas' | 'websites' | 'builders'
-//   builder      → (only for builders) 'wix' | 'jimdo' | 'weebly' | 'blogspot' | 'others'
-//   icon         → optional image URL for the icon box
-//   featured     → true to appear in Featured tab
-//   download     → optional APK / download page URL
-//   badge        → optional custom badge override
-//   color        → optional avatar color key for icon-less cards
-// ============================================================
-
 const APPS = [
     // ══════════════════════════════════════════════════════════
-    // APPS (installable APKs)
+    // APPS
     // ══════════════════════════════════════════════════════════
     {
         name: "RelayTalk",
@@ -34,14 +18,14 @@ const APPS = [
     },
 
     // ══════════════════════════════════════════════════════════
-    // WEB APPS — PWAs & hand-coded websites
+    // WEB APPS
     // ══════════════════════════════════════════════════════════
     {
         name: "Blitzracer",
         desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
         url: "https://blitzracer.vercel.app",
         category: "websites",
-        icon: "https://blitzracer.vercel.app/cargameicon.png",
+        icon: "https://blitzracer.vercel.app/cargame512.png",
         featured: false
     },
     {
@@ -78,7 +62,7 @@ const APPS = [
     },
 
     // ══════════════════════════════════════════════════════════
-    // WEBSITE BUILDERS — Sub: Wix
+    // BUILDERS — Wix
     // ══════════════════════════════════════════════════════════
     {
         name: "ChatWithZ Groups",
@@ -109,7 +93,7 @@ const APPS = [
     },
 
     // ══════════════════════════════════════════════════════════
-    // WEBSITE BUILDERS — Sub: Jimdo
+    // BUILDERS — Jimdo
     // ══════════════════════════════════════════════════════════
     {
         name: "Zeeshan 40u",
@@ -182,27 +166,9 @@ const APPS = [
         builder: "jimdo",
         color: "cinnamon",
         featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITE BUILDERS — Sub: Weebly
-    // ══════════════════════════════════════════════════════════
-    // (add later with builder: "weebly")
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITE BUILDERS — Sub: Blogspot
-    // ══════════════════════════════════════════════════════════
-    // (add later with builder: "blogspot")
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITE BUILDERS — Sub: Others
-    // ══════════════════════════════════════════════════════════
-    // (add later with builder: "others")
+    }
 ];
 
-// ============================================================
-// BUILDER SUBCATEGORIES
-// ============================================================
 const BUILDER_SUBCATEGORIES = [
     { id: "wix",      label: "Wix" },
     { id: "jimdo",    label: "Jimdo" },
@@ -219,9 +185,6 @@ const BUILDER_LABELS = {
     others: "Other"
 };
 
-// ============================================================
-// AVATAR COLOR MAP — warm palette
-// ============================================================
 const AVATAR_COLORS = {
     cinnamon: { bg: "#f5ede0", fg: "#a0522d" },
     copper:   { bg: "#f0e6d8", fg: "#8b4a2b" },
@@ -231,14 +194,8 @@ const AVATAR_COLORS = {
     espresso: { bg: "#f0e6d8", fg: "#2b1d14" }
 };
 
-// ============================================================
-// STATE
-// ============================================================
 let currentTab = "featured";
 
-// ============================================================
-// SVG ICONS
-// ============================================================
 const SVG = {
     externalLink: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="9 7 17 7 17 15"></polyline></svg>`,
     download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
@@ -250,9 +207,6 @@ const SVG = {
 
 const DEFAULT_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fbf6ee'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='%23a0522d' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
 
-// ============================================================
-// HELPERS
-// ============================================================
 function escapeHtml(str) {
     if (str === null || str === undefined) return "";
     return String(str)
@@ -288,14 +242,12 @@ function getCardClass(category) {
     }
 }
 
-// Auto-generate SVG avatar (bg + initial letter)
 function makeAvatar(name, colorKey) {
     const initial = (name || "?").trim().charAt(0).toUpperCase();
     const palette = AVATAR_COLORS[colorKey] || AVATAR_COLORS.cinnamon;
     return `<div class="app-icon-avatar" style="background:${palette.bg};color:${palette.fg};">${escapeHtml(initial)}</div>`;
 }
 
-// Icon block: real image if URL, avatar if color, nothing if neither
 function renderIcon(item) {
     if (item.icon) {
         return `<div class="app-icon">
@@ -308,9 +260,6 @@ function renderIcon(item) {
     return "";
 }
 
-// ============================================================
-// CARD
-// ============================================================
 function buildCard(item) {
     const badge = getBadgeFor(item);
     const cardClass = getCardClass(item.category);
@@ -331,7 +280,6 @@ function buildCard(item) {
            </span>`
         : "";
 
-    // Layout: with icon → top row (icon + badge). Without icon → card-row (badge + title inline)
     const topHTML = iconBlock
         ? `<div class="app-card-top">
                ${iconBlock}
@@ -365,9 +313,6 @@ function buildCard(item) {
     `;
 }
 
-// ============================================================
-// SECTION HEADER
-// ============================================================
 function buildSectionHeader(label, count) {
     return `
         <div class="website-section-header">
@@ -380,9 +325,6 @@ function buildSectionHeader(label, count) {
     `;
 }
 
-// ============================================================
-// RENDER
-// ============================================================
 function renderGrid(items, animate) {
     const grid = document.getElementById("storeGrid");
     const empty = document.getElementById("storeEmpty");
@@ -431,9 +373,6 @@ function filterByTab(tab) {
     return APPS.filter((item) => item.category === tab);
 }
 
-// ============================================================
-// 3D TILT
-// ============================================================
 const TILT_MAX_X = 6;
 const TILT_MAX_Y = 8;
 const TILT_LIFT = -6;
@@ -487,9 +426,6 @@ function attach3DTilt() {
     });
 }
 
-// ============================================================
-// TABS
-// ============================================================
 function switchTab(tab, scroll) {
     const grid = document.getElementById("storeGrid");
     if (!grid) return;
@@ -519,9 +455,6 @@ function switchTab(tab, scroll) {
     }, 240);
 }
 
-// ============================================================
-// DRAWER
-// ============================================================
 function openDrawer() {
     const drawer = document.getElementById("drawer");
     const backdrop = document.getElementById("drawerBackdrop");
@@ -548,9 +481,6 @@ function closeDrawer() {
     document.body.style.overflow = "";
 }
 
-// ============================================================
-// SCROLL TOP FAB
-// ============================================================
 function initScrollTopFab() {
     const fab = document.getElementById("scrollTop");
     if (!fab) return;
@@ -568,9 +498,6 @@ function initScrollTopFab() {
     });
 }
 
-// ============================================================
-// NAVBAR SHADOW
-// ============================================================
 function initNavbarScroll() {
     const nav = document.getElementById("navbar");
     if (!nav) return;
@@ -584,16 +511,10 @@ function initNavbarScroll() {
     toggle();
 }
 
-// ============================================================
-// KEYBOARD
-// ============================================================
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeDrawer();
 });
 
-// ============================================================
-// INIT
-// ============================================================
 function init() {
     document.querySelectorAll(".tab").forEach((btn) => {
         btn.addEventListener("click", () => switchTab(btn.dataset.tab, false));
