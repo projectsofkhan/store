@@ -166,7 +166,38 @@ const APPS = [
         builder: "jimdo",
         color: "cinnamon",
         featured: false
-    }
+    },
+
+    // ══════════════════════════════════════════════════════════
+    // BUILDERS — Weebly
+    // ══════════════════════════════════════════════════════════
+    {
+        name: "Exile LLC",
+        desc: "A Weebly-built site — corporate-style landing page with a clean, modern layout.",
+        url: "https://exilellc.weebly.com/",
+        category: "builders",
+        builder: "weebly",
+        color: "caramel",
+        featured: false
+    },
+
+    // ══════════════════════════════════════════════════════════
+    // BUILDERS — Blogspot
+    // ══════════════════════════════════════════════════════════
+    {
+        name: "Unscripted Shayari",
+        desc: "A Blogspot collection of unscripted shayari — poetry and verse shared freely.",
+        url: "https://unscripted-shayari.blogspot.com/?m=1",
+        category: "builders",
+        builder: "blogspot",
+        color: "copper",
+        featured: false
+    },
+
+    // ══════════════════════════════════════════════════════════
+    // BUILDERS — Others
+    // ══════════════════════════════════════════════════════════
+    // (add later with builder: "others")
 ];
 
 const BUILDER_SUBCATEGORIES = [
