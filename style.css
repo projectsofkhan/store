@@ -100,7 +100,7 @@ img { display: block; max-width: 100%; }
 .navbar-inner {
     max-width: 1200px;
     margin: 0 auto;
-    height: 68px;
+    height: 76px;
     padding: 0 24px;
     display: flex;
     align-items: center;
@@ -111,35 +111,39 @@ img { display: block; max-width: 100%; }
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     min-width: 0;
     transition: transform 0.4s var(--ease);
 }
 
 .navbar-brand:hover { transform: translateY(-1px); }
 
+/* Bigger logo container */
 .navbar-brand-logo-wrap {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 14px;
     background: var(--white);
     border: 1px solid var(--border-warm);
     overflow: hidden;
-    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    box-shadow: 0 4px 12px rgba(43, 29, 20, 0.06);
 }
 
 .navbar-brand:hover .navbar-brand-logo-wrap {
-    transform: rotate(-3deg);
+    transform: rotate(-3deg) scale(1.04);
     border-color: var(--cinnamon);
+    box-shadow: 0 6px 18px rgba(160, 82, 45, 0.16);
 }
 
+/* Bigger logo image */
 .navbar-brand-logo-img {
-    width: 26px;
-    height: 26px;
+    width: 36px;
+    height: 36px;
     display: block;
     object-fit: contain;
 }
@@ -151,7 +155,7 @@ img { display: block; max-width: 100%; }
 }
 
 .navbar-brand-name {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--text);
     letter-spacing: -0.02em;
@@ -174,11 +178,11 @@ img { display: block; max-width: 100%; }
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 9px 16px;
+    padding: 10px 18px;
     border-radius: var(--radius-pill);
     background: var(--cream);
     color: var(--sienna);
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     font-weight: 500;
     letter-spacing: -0.005em;
     border: 1px solid var(--border-warm);
@@ -204,9 +208,9 @@ img { display: block; max-width: 100%; }
 
 .menu-btn {
     position: relative;
-    width: 42px;
-    height: 42px;
-    border-radius: 13px;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
     background: var(--linen);
     border: 1px solid var(--border);
     display: flex;
@@ -223,7 +227,7 @@ img { display: block; max-width: 100%; }
 
 .menu-btn-line {
     display: block;
-    width: 16px;
+    width: 18px;
     height: 2px;
     border-radius: 2px;
     background: var(--text);
@@ -487,7 +491,7 @@ img { display: block; max-width: 100%; }
 /* TABS */
 .tabs {
     position: sticky;
-    top: 68px;
+    top: 76px;
     z-index: 90;
     padding: 14px 24px;
     background: rgba(255, 255, 255, 0.88);
@@ -706,14 +710,12 @@ img { display: block; max-width: 100%; }
     transition: transform 0.5s var(--ease);
 }
 
-/* Card type variations — all pure white */
 .app-card.card-app { border-color: var(--border-2); background: var(--white); }
 .app-card.card-pwa { border-color: var(--border-warm); background: var(--white); }
 .app-card.card-website { padding-top: 20px; background: var(--white); }
 .app-card.card-builder { background: var(--white); }
 .app-card.card-builder:hover { background: var(--white); }
 
-/* Website top strip */
 .app-card.card-website::after {
     content: '';
     position: absolute;
@@ -729,7 +731,6 @@ img { display: block; max-width: 100%; }
 
 .app-card.card-website:hover::after { opacity: 1; }
 
-/* Card layouts */
 .app-card-top {
     display: flex;
     align-items: center;
@@ -757,7 +758,6 @@ img { display: block; max-width: 100%; }
     text-overflow: ellipsis;
 }
 
-/* Icon */
 .app-icon {
     width: 58px;
     height: 58px;
@@ -802,7 +802,6 @@ img { display: block; max-width: 100%; }
     box-shadow: 0 10px 24px rgba(160, 82, 45, 0.18);
 }
 
-/* Badge */
 .app-badge {
     display: inline-flex;
     align-items: center;
@@ -849,7 +848,6 @@ img { display: block; max-width: 100%; }
     border: 1px solid var(--cinnamon);
 }
 
-/* Builder chip */
 .builder-chip {
     display: inline-flex;
     align-items: center;
@@ -881,7 +879,6 @@ img { display: block; max-width: 100%; }
 .builder-chip[data-builder="weebly"] .builder-chip-dot   { background: #31a152; }
 .builder-chip[data-builder="blogspot"] .builder-chip-dot { background: #f57c00; }
 
-/* Text */
 .app-name {
     font-family: 'Google Sans', 'Inter', sans-serif;
     font-size: 1.16rem;
@@ -904,7 +901,6 @@ img { display: block; max-width: 100%; }
     overflow: hidden;
 }
 
-/* Buttons */
 .app-actions {
     display: flex;
     gap: 8px;
@@ -967,7 +963,6 @@ img { display: block; max-width: 100%; }
 
 .app-btn-download:active { transform: translateY(0) scale(0.98); }
 
-/* Empty */
 .empty {
     display: flex;
     flex-direction: column;
@@ -1013,7 +1008,6 @@ img { display: block; max-width: 100%; }
     line-height: 1.55;
 }
 
-/* Footer */
 .footer {
     position: relative;
     z-index: 1;
@@ -1046,7 +1040,6 @@ img { display: block; max-width: 100%; }
     font-style: italic;
 }
 
-/* Scroll top FAB */
 .scroll-top {
     position: fixed;
     bottom: 24px;
@@ -1082,7 +1075,6 @@ img { display: block; max-width: 100%; }
 
 .scroll-top:active { transform: translateY(0) scale(0.96); }
 
-/* Tab switch animation */
 .grid.switching .app-card,
 .grid.switching .website-section-header {
     animation: cardOut 0.3s var(--ease) both;
@@ -1105,7 +1097,6 @@ img { display: block; max-width: 100%; }
 .grid.entering .app-card:nth-child(9)  { animation-delay: 0.34s; }
 .grid.entering .app-card:nth-child(10) { animation-delay: 0.38s; }
 
-/* Responsive */
 @media (max-width: 900px) {
     .navbar-cta span:first-child { display: none; }
     .navbar-cta { padding: 9px 11px; gap: 0; }
@@ -1113,17 +1104,20 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-    .navbar-inner { height: 62px; padding: 0 16px; gap: 10px; }
-    .navbar-brand-logo-wrap { width: 38px; height: 38px; min-width: 38px; border-radius: 11px; }
-    .navbar-brand-logo-img { width: 22px; height: 22px; }
-    .navbar-brand-name { font-size: 0.94rem; }
+    .navbar-inner { height: 68px; padding: 0 16px; gap: 10px; }
+    .navbar-brand-logo-wrap { width: 44px; height: 44px; min-width: 44px; border-radius: 13px; }
+    .navbar-brand-logo-img { width: 32px; height: 32px; }
+    .navbar-brand-name { font-size: 0.98rem; }
     .navbar-brand-tag { font-size: 0.66rem; }
+
+    .menu-btn { width: 42px; height: 42px; border-radius: 12px; }
+    .menu-btn-line { width: 16px; }
 
     .hero { padding: 62px 20px 40px; }
     .hero-title { font-size: 1.95rem; }
     .hero-sub { font-size: 0.94rem; }
 
-    .tabs { top: 62px; padding: 12px 16px; }
+    .tabs { top: 68px; padding: 12px 16px; }
     .tabs-inner { padding: 4px; gap: 3px; }
     .tab { padding: 10px 6px; font-size: 0.78rem; gap: 6px; }
     .tab-icon { width: 13px; height: 13px; }
