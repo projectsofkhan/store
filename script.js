@@ -1,5 +1,5 @@
 /* ============================================================ */
-/* Store — Controller                                            */
+/* SelfStore — Controller                                        */
 /* ============================================================ */
 
 const APPS = [
@@ -45,6 +45,14 @@ const APPS = [
         featured: false
     },
     {
+        name: "WebMarrow",
+        desc: "A team-built website project — clean design, modern layouts, and a collaborative effort from start to finish.",
+        url: "https://webmarrow.vercel.app/",
+        category: "websites",
+        icon: "https://webmarrow.vercel.app/favicon.ico",
+        featured: true
+    },
+    {
         name: "Zeeshan 40u Portfolio",
         desc: "Personal portfolio showcasing projects, skills, and contact — the home base for everything I build.",
         url: "https://zeeshan40u.vercel.app",
@@ -62,159 +70,28 @@ const APPS = [
     },
 
     // ══════════════════════════════════════════════════════════
-    // BUILDERS — Wix
+    // WEBSITE BUILDERS (kept for later — hidden from UI)
+    // Re-enable by:
+    //   1. Adding a "builders" tab back in index.html
+    //   2. Changing grid-template-columns in .tabs-inner
+    //   3. Uncommenting these entries
     // ══════════════════════════════════════════════════════════
-    {
-        name: "ChatWithZ Groups",
-        desc: "Old Wix site built for personal chat groups and community hangouts.",
-        url: "https://chatwithz.wixsite.com/groups",
-        category: "builders",
-        builder: "wix",
-        color: "copper",
-        featured: false
-    },
-    {
-        name: "ChatWithZ Chats",
-        desc: "Companion Wix site with chat rooms — personal-use project from earlier days.",
-        url: "https://chatwithz.wixsite.com/chats",
-        category: "builders",
-        builder: "wix",
-        color: "copper",
-        featured: false
-    },
-    {
-        name: "RDJ Star",
-        desc: "A Wix site made as a game hub to play with friends and brothers.",
-        url: "https://rdjstar.wixsite.com/rdj1",
-        category: "builders",
-        builder: "wix",
-        color: "cinnamon",
-        featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // BUILDERS — Jimdo
-    // ══════════════════════════════════════════════════════════
-    {
-        name: "Zeeshan 40u",
-        desc: "Personal Jimdo space with listings and everything I've been working on.",
-        url: "https://zeeshan40u.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "caramel",
-        featured: false
-    },
-    {
-        name: "Class 10th Notes",
-        desc: "Study notes site for Class 10th students — clean, organized, and free.",
-        url: "https://class10th.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "sienna",
-        featured: false
-    },
-    {
-        name: "JavaScript Notes",
-        desc: "Curated JS notes site — a quick reference for students learning JavaScript.",
-        url: "https://jsbykhan.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "cinnamon",
-        featured: false
-    },
-    {
-        name: "Python Projects",
-        desc: "Collection of Python projects and code snippets, hosted for easy sharing.",
-        url: "https://python40u.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "copper",
-        featured: false
-    },
-    {
-        name: "CSS Notes",
-        desc: "CSS notes site — everything from selectors to flexbox and grid, in one place.",
-        url: "https://cssbykhan.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "caramel",
-        featured: false
-    },
-    {
-        name: "Class 9th Notes",
-        desc: "Study notes for Class 9th students, organized by subject.",
-        url: "https://zeeshank.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "sienna",
-        featured: false
-    },
-    {
-        name: "Site Updates",
-        desc: "News and updates page for the Class 9th notes site.",
-        url: "https://siteupdates.jimdofree.com/news/",
-        category: "builders",
-        builder: "jimdo",
-        color: "taupe",
-        featured: false
-    },
-    {
-        name: "HTML Notes",
-        desc: "HTML notes site — structured notes for anyone starting with web development.",
-        url: "https://htmlbykhan.jimdofree.com/",
-        category: "builders",
-        builder: "jimdo",
-        color: "cinnamon",
-        featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // BUILDERS — Weebly
-    // ══════════════════════════════════════════════════════════
-    {
-        name: "Exile LLC",
-        desc: "A Weebly-built site — corporate-style landing page with a clean, modern layout.",
-        url: "https://exilellc.weebly.com/",
-        category: "builders",
-        builder: "weebly",
-        color: "caramel",
-        featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // BUILDERS — Blogspot
-    // ══════════════════════════════════════════════════════════
-    {
-        name: "Unscripted Shayari",
-        desc: "A Blogspot collection of unscripted shayari — poetry and verse shared freely.",
-        url: "https://unscripted-shayari.blogspot.com/?m=1",
-        category: "builders",
-        builder: "blogspot",
-        color: "copper",
-        featured: false
-    },
-
-    // ══════════════════════════════════════════════════════════
-    // BUILDERS — Others
-    // ══════════════════════════════════════════════════════════
-    // (add later with builder: "others")
+    /*
+    { name: "ChatWithZ Groups",     url: "https://chatwithz.wixsite.com/groups",          category: "builders", builder: "wix",      color: "copper"   },
+    { name: "ChatWithZ Chats",      url: "https://chatwithz.wixsite.com/chats",           category: "builders", builder: "wix",      color: "copper"   },
+    { name: "RDJ Star",             url: "https://rdjstar.wixsite.com/rdj1",              category: "builders", builder: "wix",      color: "cinnamon" },
+    { name: "Zeeshan 40u",          url: "https://zeeshan40u.jimdofree.com/",             category: "builders", builder: "jimdo",    color: "caramel"  },
+    { name: "Class 10th Notes",     url: "https://class10th.jimdofree.com/",              category: "builders", builder: "jimdo",    color: "sienna"   },
+    { name: "JavaScript Notes",     url: "https://jsbykhan.jimdofree.com/",               category: "builders", builder: "jimdo",    color: "cinnamon" },
+    { name: "Python Projects",      url: "https://python40u.jimdofree.com/",              category: "builders", builder: "jimdo",    color: "copper"   },
+    { name: "CSS Notes",            url: "https://cssbykhan.jimdofree.com/",              category: "builders", builder: "jimdo",    color: "caramel"  },
+    { name: "Class 9th Notes",      url: "https://zeeshank.jimdofree.com/",               category: "builders", builder: "jimdo",    color: "sienna"   },
+    { name: "Site Updates",         url: "https://siteupdates.jimdofree.com/news/",       category: "builders", builder: "jimdo",    color: "taupe"    },
+    { name: "HTML Notes",           url: "https://htmlbykhan.jimdofree.com/",             category: "builders", builder: "jimdo",    color: "cinnamon" },
+    { name: "Exile LLC",            url: "https://exilellc.weebly.com/",                  category: "builders", builder: "weebly",   color: "caramel"  },
+    { name: "Unscripted Shayari",   url: "https://unscripted-shayari.blogspot.com/?m=1",  category: "builders", builder: "blogspot", color: "copper"   }
+    */
 ];
-
-const BUILDER_SUBCATEGORIES = [
-    { id: "wix",      label: "Wix" },
-    { id: "jimdo",    label: "Jimdo" },
-    { id: "weebly",   label: "Weebly" },
-    { id: "blogspot", label: "Blogspot" },
-    { id: "others",   label: "Others" }
-];
-
-const BUILDER_LABELS = {
-    wix: "Wix",
-    jimdo: "Jimdo",
-    weebly: "Weebly",
-    blogspot: "Blogspot",
-    others: "Other"
-};
 
 const AVATAR_COLORS = {
     cinnamon: { bg: "#f5ede0", fg: "#a0522d" },
@@ -232,8 +109,7 @@ const SVG = {
     download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
     badgeApp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
     badgePwa: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"></rect><line x1="12" y1="18" x2="12" y2="18.01"></line></svg>`,
-    badgeWebsite: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
-    badgeBuilder: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>`
+    badgeWebsite: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
 };
 
 const DEFAULT_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fbf6ee'/%3E%3Cpath d='M10 22V10h7a4 4 0 0 1 0 8h-5' stroke='%23a0522d' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
@@ -258,7 +134,6 @@ function getBadgeFor(item) {
         case "apps":     return { cls: "badge-pwas",     svg: SVG.badgeApp,      label: "App" };
         case "pwas":     return { cls: "badge-pwas",     svg: SVG.badgePwa,      label: "PWA" };
         case "websites": return { cls: "badge-websites", svg: SVG.badgeWebsite,  label: "Website" };
-        case "builders": return { cls: "badge-builders", svg: SVG.badgeBuilder,  label: "Builder" };
         default:         return { cls: "badge-websites", svg: SVG.badgeWebsite,  label: "Item" };
     }
 }
@@ -268,7 +143,6 @@ function getCardClass(category) {
         case "apps":     return "card-app";
         case "pwas":     return "card-pwa";
         case "websites": return "card-website";
-        case "builders": return "card-builder";
         default:         return "card-website";
     }
 }
@@ -304,13 +178,6 @@ function buildCard(item) {
            </a>`
         : "";
 
-    const builderChip = item.category === "builders" && item.builder
-        ? `<span class="builder-chip" data-builder="${escapeAttr(item.builder)}">
-               <span class="builder-chip-dot"></span>
-               ${escapeHtml(BUILDER_LABELS[item.builder] || "Builder")}
-           </span>`
-        : "";
-
     const topHTML = iconBlock
         ? `<div class="app-card-top">
                ${iconBlock}
@@ -331,7 +198,6 @@ function buildCard(item) {
     return `
         <article class="app-card ${cardClass} ${featured}" data-category="${escapeAttr(item.category)}">
             ${topHTML}
-            ${builderChip}
             <p class="app-desc">${escapeHtml(item.desc)}</p>
             <div class="app-actions">
                 <a class="app-btn app-btn-visit" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
@@ -341,18 +207,6 @@ function buildCard(item) {
                 ${downloadBtn}
             </div>
         </article>
-    `;
-}
-
-function buildSectionHeader(label, count) {
-    return `
-        <div class="website-section-header">
-            <span class="website-section-label">
-                ${escapeHtml(label)}
-                <span class="website-section-count">${count}</span>
-            </span>
-            <span class="website-section-line"></span>
-        </div>
     `;
 }
 
@@ -371,20 +225,7 @@ function renderGrid(items, animate) {
     grid.style.display = "";
     if (empty) empty.style.display = "none";
 
-    let html = "";
-
-    if (currentTab === "builders") {
-        BUILDER_SUBCATEGORIES.forEach((sub) => {
-            const group = items.filter((item) => item.builder === sub.id);
-            if (group.length === 0) return;
-            html += buildSectionHeader(sub.label, group.length);
-            html += group.map(buildCard).join("");
-        });
-    } else {
-        html = items.map(buildCard).join("");
-    }
-
-    grid.innerHTML = html;
+    grid.innerHTML = items.map(buildCard).join("");
 
     attach3DTilt();
 
