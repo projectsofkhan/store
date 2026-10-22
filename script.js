@@ -12,7 +12,7 @@ const APPS = [
         url: "https://kalpshayari.vercel.app",
         category: "websites",
         icon: "https://kalpshayari.vercel.app/shayari.png",
-        featured: true
+        featured: false
     },
     {
         name: "Dilshan Trading",
@@ -20,7 +20,7 @@ const APPS = [
         url: "https://dilshantrading.vercel.app",
         category: "websites",
         icon: "https://dilshantrading.vercel.app/dt.png",
-        featured: true
+        featured: false
     },
     {
         name: "RelayTalk",
