@@ -7,6 +7,22 @@ const APPS = [
     // APPS
     // ══════════════════════════════════════════════════════════
     {
+        name: "Kalpshayari",
+        desc: "A shayari (poetry) platform — curated verses and creative writing for the soul.",
+        url: "https://kalpshayari.vercel.app",
+        category: "websites",
+        icon: "https://kalpshayari.vercel.app/shayari.png",
+        featured: true
+    },
+    {
+        name: "Dilshan Trading",
+        desc: "Trading business website — professional trading solutions and services.",
+        url: "https://dilshantrading.vercel.app",
+        category: "websites",
+        icon: "https://dilshantrading.vercel.app/dt.png",
+        featured: true
+    },
+    {
         name: "RelayTalk",
         desc: "Fast, private messaging & calls. Chat, share images and voice notes, make calls — no ads, no noise, no tracking.",
         url: "https://relaytalk.vercel.app",
@@ -16,17 +32,13 @@ const APPS = [
         badge: "RelayTalk",
         featured: true
     },
-
-    // ══════════════════════════════════════════════════════════
-    // WEB APPS
-    // ══════════════════════════════════════════════════════════
     {
-        name: "Blitzracer",
-        desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
-        url: "https://blitzracer.github.io/Cargame",
+        name: "WebMarrow",
+        desc: "A team-built website project — clean design, modern layouts, and a collaborative effort from start to finish.",
+        url: "https://webmarrow.vercel.app/",
         category: "websites",
-        icon: "https://blitzracer.vercel.app/cargame512.png",
-        featured: false
+        icon: "https://webmarrow.vercel.app/favicon.ico",
+        featured: true
     },
     {
         name: "ZeeAI TTS",
@@ -34,22 +46,6 @@ const APPS = [
         url: "https://projectsofkhan.github.io/zeeAi",
         category: "websites",
         icon: "https://projectsofkhan.github.io/zeeAi/zee512.png",
-        featured: true
-    },
-    {
-        name: "3 Player Carrom",
-        desc: "Classic carrom board game for three players. Play with friends online, right from your browser.",
-        url: "https://carrom3p.vercel.app",
-        category: "websites",
-        icon: "https://carrom3p.vercel.app/favicon.ico",
-        featured: false
-    },
-    {
-        name: "WebMarrow",
-        desc: "A team-built website project — clean design, modern layouts, and a collaborative effort from start to finish.",
-        url: "https://webmarrow.vercel.app/",
-        category: "websites",
-        icon: "https://webmarrow.vercel.app/favicon.ico",
         featured: true
     },
     {
@@ -61,6 +57,22 @@ const APPS = [
         featured: true
     },
     {
+        name: "Blitzracer",
+        desc: "A high-speed car racing game built as a PWA. Smooth controls, fast action, playable right in your browser.",
+        url: "https://blitzracer.github.io/Cargame",
+        category: "websites",
+        icon: "https://blitzracer.vercel.app/cargame512.png",
+        featured: false
+    },
+    {
+        name: "3 Player Carrom",
+        desc: "Classic carrom board game for three players. Play with friends online, right from your browser.",
+        url: "https://carrom3p.vercel.app",
+        category: "websites",
+        icon: "https://carrom3p.vercel.app/favicon.ico",
+        featured: false
+    },
+    {
         name: "TrailStory",
         desc: "A narrative-driven game site with story chapters, choices, and an immersive reading-and-playing experience.",
         url: "https://projectsofkhan.github.io/Trail/",
@@ -68,29 +80,38 @@ const APPS = [
         color: "cinnamon",
         featured: false
     },
-
-    // ══════════════════════════════════════════════════════════
-    // WEBSITE BUILDERS (kept for later — hidden from UI)
-    // Re-enable by:
-    //   1. Adding a "builders" tab back in index.html
-    //   2. Changing grid-template-columns in .tabs-inner
-    //   3. Uncommenting these entries
-    // ══════════════════════════════════════════════════════════
-    /*
-    { name: "ChatWithZ Groups",     url: "https://chatwithz.wixsite.com/groups",          category: "builders", builder: "wix",      color: "copper"   },
-    { name: "ChatWithZ Chats",      url: "https://chatwithz.wixsite.com/chats",           category: "builders", builder: "wix",      color: "copper"   },
-    { name: "RDJ Star",             url: "https://rdjstar.wixsite.com/rdj1",              category: "builders", builder: "wix",      color: "cinnamon" },
-    { name: "Zeeshan 40u",          url: "https://zeeshan40u.jimdofree.com/",             category: "builders", builder: "jimdo",    color: "caramel"  },
-    { name: "Class 10th Notes",     url: "https://class10th.jimdofree.com/",              category: "builders", builder: "jimdo",    color: "sienna"   },
-    { name: "JavaScript Notes",     url: "https://jsbykhan.jimdofree.com/",               category: "builders", builder: "jimdo",    color: "cinnamon" },
-    { name: "Python Projects",      url: "https://python40u.jimdofree.com/",              category: "builders", builder: "jimdo",    color: "copper"   },
-    { name: "CSS Notes",            url: "https://cssbykhan.jimdofree.com/",              category: "builders", builder: "jimdo",    color: "caramel"  },
-    { name: "Class 9th Notes",      url: "https://zeeshank.jimdofree.com/",               category: "builders", builder: "jimdo",    color: "sienna"   },
-    { name: "Site Updates",         url: "https://siteupdates.jimdofree.com/news/",       category: "builders", builder: "jimdo",    color: "taupe"    },
-    { name: "HTML Notes",           url: "https://htmlbykhan.jimdofree.com/",             category: "builders", builder: "jimdo",    color: "cinnamon" },
-    { name: "Exile LLC",            url: "https://exilellc.weebly.com/",                  category: "builders", builder: "weebly",   color: "caramel"  },
-    { name: "Unscripted Shayari",   url: "https://unscripted-shayari.blogspot.com/?m=1",  category: "builders", builder: "blogspot", color: "copper"   }
-    */
+    {
+        name: "countonclick",
+        desc: "A simple, fun clicker web app — tap, count, and share.",
+        url: "https://countonclick.vercel.app",
+        category: "websites",
+        icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a0522d'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M32 20v12l8 4' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E",
+        featured: false
+    },
+    {
+        name: "Green Bank",
+        desc: "A banking service website with a green-first approach — modern banking, sustainable future.",
+        url: "https://mygreenbank.vercel.app",
+        category: "websites",
+        icon: "https://mygreenbank.vercel.app/favicon.ico",
+        featured: false
+    },
+    {
+        name: "Khandwa Recycles",
+        desc: "Recycling initiative website for Khandwa — sustainability and green projects for the community.",
+        url: "https://khandwarecycles.vercel.app/",
+        category: "websites",
+        icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a0522d'/%3E%3Cpath d='M22 24l-6 10 6 10h20l6-10-6-10z' fill='none' stroke='white' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M28 30l4 8 4-8' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+        featured: false
+    },
+    {
+        name: "dreamsupart",
+        desc: "Dreams Apart — a personal creative website.",
+        url: "https://dreamsupart.vercel.app",
+        category: "websites",
+        icon: "https://dreamsupart.vercel.app/favicon.ico",
+        featured: false
+    }
 ];
 
 const AVATAR_COLORS = {
